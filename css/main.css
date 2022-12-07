@@ -2479,7 +2479,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #fff;
+  background: #ff50bf;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2607,6 +2607,10 @@ span.exturl:hover {
 }
 .sidebar {
   background: rgba(62,60,61,0.8);
+}
+.sidebar-toggle {
+  height: 25px;
+  width: 25px;
 }
 .tag-cloud a {
   box-shadow: 0 1px 3px #5587ce, 0 1px 2px #5587ce;
