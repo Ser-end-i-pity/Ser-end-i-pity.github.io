@@ -190,6 +190,23 @@
       </div>
     </div>
     
+	<div id="Date" style="color: #e5dfdf;margin-left: 10px;"></div>
+	<script type="text/javascript"> 
+		function showDate(){
+		var w1 = ['日', '一', '二', '三', '四', '五', '六'];
+		setInterval(function(){   
+		var date=new Date();   
+		var year=date.getFullYear(); //获取当前年份   
+		var mon=date.getMonth()+1; //获取当前月份   
+		var da=date.getDate(); //获取当前日   
+		var day=w1[date.getDay()]; //获取当前星期几   
+		var h=('0'+date.getHours()).slice(-2); //获取小时   
+		var m=('0'+date.getMinutes()).slice(-2); //获取分钟   
+		var s=('0'+date.getSeconds()).slice(-2); //获取秒 
+		var d=document.getElementById('Date');    
+		d.innerHTML='今天是'+year+'年'+mon+'月'+da+'日'+'星期'+day+' '+h+':'+m+':'+s;  },1000)  }
+		showDate();
+		</script>
 	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=335 src="//music.163.com/outchain/player?type=0&id=7708016601&auto=1&height=430"></iframe>
   </aside>
 
@@ -301,7 +318,7 @@
 
 
 <div class="copyright">
-  &copy; 
+  &copy; 2022 - 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
