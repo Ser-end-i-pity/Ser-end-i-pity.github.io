@@ -2479,7 +2479,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ffff70;
+  background: #2d62e3;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2638,4 +2638,27 @@ span.exturl:hover {
 .category-list li.active a {
   font-weight: bold;
   color: #000;
+}
+# 分页样式,
+.main .main-inner .pagination a:hover {
+  color: #4a9fe9;
+}
+.main .main-inner .pagination .extend {
+  color: #f0f8ff;
+  font-size: 20px;
+  font-weight: bold;
+  background: #d2691e;
+  border-radius: 5px;
+}
+.main .main-inner .pagination .page-number {
+  border-bottom: 1px solid #918f8f;
+  color: rgba(58,57,57,0.988);
+  font-size: 18px;
+}
+.main .main-inner .pagination .page-number.current {
+  background: rgba(47,146,238,0.961);
+  border-color: #87daff;
+  font-size: 18px;
+  border-radius: 5px;
+  color: #f0f8ff;
 }
