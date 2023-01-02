@@ -706,6 +706,408 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux</title>
+    <url>/2023/01/02/Linux/</url>
+    <content><![CDATA[<img src="/2023/01/02/Linux/Linux封面.png" alt="Linux封面" style="zoom:200%;">
+
+<p>新的一年 , 新气象 , 万事胜意 。最美的人生姿态是努力向前 ,每一次努力,都是决不放弃 ! 每一次向前 , 都是超越自己 !!</p>
+<span id="more"></span>
+
+<h4 id="一-Linux-介绍"><a href="#一-Linux-介绍" class="headerlink" title="一 Linux 介绍"></a>一 Linux 介绍</h4><h5 id="1-1-Linux-的版本"><a href="#1-1-Linux-的版本" class="headerlink" title="1.1 Linux 的版本"></a>1.1 Linux 的版本</h5><ul>
+<li>Ubuntu</li>
+<li>redhat</li>
+<li>CentOS</li>
+</ul>
+<blockquote>
+<p>Linux的版本分为两种，一种是Linus团队正在维护的开源内核版本。另一种是一些厂商基于内核版本封装的发行版本。</p>
+<ul>
+<li><p>Linux的内核版本官网：<a href="https://www.kernel.org/">https://www.kernel.org/</a></p>
+</li>
+<li><p>Linux的发行版本，就是 CentOS</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="1-2-Linux和Windows区别"><a href="#1-2-Linux和Windows区别" class="headerlink" title="1.2 Linux和Windows区别"></a>1.2 Linux和Windows区别</h5><blockquote>
+<ul>
+<li>Linux是严格区分大小写的，Windows无所谓。</li>
+<li>Linux中一切皆是文件。</li>
+<li>Linux中文件是没有后缀的，但是他有一些约定俗成的后缀。</li>
+<li>Windows下的软件一般是无法直接运行的Linux中。</li>
+</ul>
+</blockquote>
+<h5 id="1-3-Linux-安装"><a href="#1-3-Linux-安装" class="headerlink" title="1.3 Linux 安装"></a>1.3 Linux 安装</h5><blockquote>
+<ul>
+<li><p>安装Linux，需要一个虚拟机，为了安装虚拟环境：VMware或者Virtual Box（采用VMware）</p>
+<p><a href="https://www.vmware.com/go/getworkstation-win">https://www.vmware.com/go/getworkstation-win</a></p>
+</li>
+<li><p>为了安装Linux，需要一个Linux的镜像文件：CentOS7版本</p>
+<p><a href="https://vault.centos.org/">https://vault.centos.org/</a></p>
+</li>
+<li><p>安装一个连接Linux的图形化界面：Xterm，SSH，XShell（Xterm）</p>
+<p><a href="https://download.mobatek.net/2012020021813110/MobaXterm_Portable_v20.1.zip">https://download.mobatek.net/2012020021813110/MobaXterm_Portable_v20.1.zip</a></p>
+</li>
+</ul>
+</blockquote>
+<h5 id="1-4-通过mtputty连接-Linux"><a href="#1-4-通过mtputty连接-Linux" class="headerlink" title="1.4 通过mtputty连接 Linux"></a>1.4 通过mtputty连接 Linux</h5><p>进入linux 输入命令查看ip地址 :</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br><span class="line"><span class="comment"># 看到 inet 就是linux 的ip地址</span></span><br></pre></td></tr></table></figure>
+
+<p>然后使用mtputty 连接</p>
+<img src="/2023/01/02/Linux/mtputty%E8%BF%9E%E6%8E%A5linux.png" style="zoom:200%;">
+
+
+
+<h4 id="二-Linux-目录结构"><a href="#二-Linux-目录结构" class="headerlink" title="二 Linux 目录结构"></a>二 Linux 目录结构</h4><blockquote>
+<p>Windows的目录结构是带有盘符的。D：  E： C：，而Linux中是没有盘符的</p>
+<p>在 mtputty 中输入ls / 查看Linux的顶级目录。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">Linux目录树状图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/02/Linux/1586239342796.png" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ul>
+<li>root：该目录为系统管理员HOME目录</li>
+<li>bin：这个目录下放着经常使用的命令</li>
+<li>boot：这里存放的是启动Linux时的一些核心文件</li>
+<li>etc：存放系统管理所需要的配置文件和子目录</li>
+<li>home：普通用户的HOME目录</li>
+<li>usr：默认安装软件的目录，类似Windows中的Program Files目录</li>
+<li>opt：是主机额外安装软件拜访的目录</li>
+</ul>
+</blockquote>
+<h4 id="三-Linux-基本命令"><a href="#三-Linux-基本命令" class="headerlink" title="三 Linux 基本命令"></a>三 Linux 基本命令</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前路径</span></span><br><span class="line"><span class="built_in">pwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出当前路径的文件夹/文件</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清屏</span></span><br><span class="line">clear</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制停止</span></span><br><span class="line">ctrl+c</span><br><span class="line"></span><br><span class="line"><span class="comment"># ping 域名</span></span><br><span class="line">ping 地址</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> <span class="comment"># 退出</span></span><br><span class="line"></span><br><span class="line">reboot <span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="四-Linux-目录命令"><a href="#四-Linux-目录命令" class="headerlink" title="四 Linux 目录命令"></a>四 Linux 目录命令</h4><h5 id="4-1-列出目录"><a href="#4-1-列出目录" class="headerlink" title="4.1 列出目录"></a>4.1 列出目录</h5><blockquote>
+<p>查看指定目录下的内容，默认查看当前目录下内容</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> [-ald] [目录名]</span><br><span class="line"><span class="comment"># 目录名不填写，默认为当前目录。</span></span><br><span class="line"><span class="comment"># -a：列出的全部的文件，包括隐藏文件</span></span><br><span class="line"><span class="comment"># -l：列举出全部的信息</span></span><br><span class="line"><span class="comment"># -d：仅查看目录本身</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-2-切换目录"><a href="#4-2-切换目录" class="headerlink" title="4.2 切换目录"></a>4.2 切换目录</h5><blockquote>
+<p>实现目录间切换，使用绝对路径、相对路径、特殊符号</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> 具体路径 | 特殊符号</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>特殊符号</th>
+<th>表达的路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.</td>
+<td>当前目录</td>
+</tr>
+<tr>
+<td>..</td>
+<td>上一级目录</td>
+</tr>
+<tr>
+<td>/</td>
+<td>根目录</td>
+</tr>
+<tr>
+<td>~</td>
+<td>当前登录用户的HOME目录</td>
+</tr>
+<tr>
+<td>-</td>
+<td>返回</td>
+</tr>
+</tbody></table>
+<h5 id="4-3-创建目录"><a href="#4-3-创建目录" class="headerlink" title="4.3 创建目录"></a>4.3 创建目录</h5><blockquote>
+<p>创建目录，以及创建多级目录方式</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> [-p] 目录名</span><br><span class="line"><span class="comment"># -p：代表创建多级目录时，使用</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p a/b/c</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-4-删除目录"><a href="#4-4-删除目录" class="headerlink" title="4.4 删除目录"></a>4.4 删除目录</h5><blockquote>
+<p>删除非空目录或包含内容的目录</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只能删除空目录</span></span><br><span class="line"><span class="built_in">rmdir</span> 目录名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除非空目录</span></span><br><span class="line"><span class="built_in">rm</span> [-rf] 目录名</span><br><span class="line"><span class="comment"># -r：代表递归删除目录下的全部内容</span></span><br><span class="line"><span class="comment"># -f：不询问，直接删除</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-5-复制目录"><a href="#4-5-复制目录" class="headerlink" title="4.5 复制目录"></a>4.5 复制目录</h5><blockquote>
+<p>复制目录下的全部内容</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> -r 来源目录 目标目录</span><br><span class="line"><span class="comment"># -r：递归复制全部内容，必填项</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-6-移动-重命名目录"><a href="#4-6-移动-重命名目录" class="headerlink" title="4.6 移动 , 重命名目录"></a>4.6 移动 , 重命名目录</h5><blockquote>
+<p>移动、重命名目录，会根据第二个参数指定具体操作逻辑</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> 目录名 新目录名 | 路径</span><br><span class="line"><span class="comment"># 如果第二个参数指定的路径不存在，就是重命名，如果第二个参数的路径存在，就是移动</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如 这个就是重命名</span></span><br><span class="line"><span class="built_in">mv</span> jdk-8u301-linux-x64.tar.gz jdk8.0.tar.gz</span><br><span class="line"><span class="comment"># 移动</span></span><br><span class="line"><span class="built_in">mv</span> jdk8.0.tar.gz ..</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="五-Linux-文件命令"><a href="#五-Linux-文件命令" class="headerlink" title="五 Linux 文件命令"></a>五 Linux 文件命令</h4><h5 id="5-1-创建文件"><a href="#5-1-创建文件" class="headerlink" title="5.1 创建文件"></a>5.1 创建文件</h5><blockquote>
+<p>创建空文件</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">touch</span> 文件名1 文件名2 ……</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;内容&quot;</span> &gt; 文件名  <span class="comment"># 在指定文件写入内容</span></span><br><span class="line"><span class="built_in">cat</span> 文件名 <span class="comment"># 查看该文件内容</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-2-编辑文件"><a href="#5-2-编辑文件" class="headerlink" title="5.2 编辑文件"></a>5.2 编辑文件</h5><blockquote>
+<p>编辑文件，后期最常的命令之一</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">vi 文件名 				<span class="comment"># 查看文件。（查看模式）</span></span><br><span class="line">i | a | o   		  <span class="comment"># 进入编辑模式。（编辑模式）</span></span><br><span class="line">                      <span class="comment"># i：在当前光标处，进入编辑模式。 </span></span><br><span class="line">                      <span class="comment"># a：在当前光标后一格，进入编辑模式。 </span></span><br><span class="line">                      <span class="comment"># o：在当前光标下一行，进入编辑模式。</span></span><br><span class="line">esc				      <span class="comment"># 退出编辑模式，回到查看模式。</span></span><br><span class="line">:				      <span class="comment"># 从查看模式进入到底行命令模式。（底行命名模式）</span></span><br><span class="line">                      <span class="comment"># 在底行命令模式下，输入wq：保存并退出。输入q!：不保存并退出</span></span><br><span class="line">                      <span class="comment"># 在查看模式下，摁ZZ，可以快速保存并退出。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-3-vi文件时-其他操作"><a href="#5-3-vi文件时-其他操作" class="headerlink" title="5.3 vi文件时, 其他操作"></a>5.3 vi文件时, 其他操作</h5><blockquote>
+<p>编辑文件时，常用的快捷键，方便操作</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在vi文件时，在底行命令模式下可以输入以下常用内容</span></span><br><span class="line"><span class="comment"># 行号操作</span></span><br><span class="line"><span class="built_in">set</span> nu              <span class="comment"># 查看文件的行号</span></span><br><span class="line">to rownum           <span class="comment"># 快速的跳转到指定行</span></span><br><span class="line"><span class="built_in">set</span> nonu            <span class="comment"># 取消行号</span></span><br><span class="line"><span class="comment"># 搜索操作</span></span><br><span class="line">/word               <span class="comment"># 类似Windows的Ctrl + F搜索文件中的具体内容所在位置，查看下一个可以输入字母n</span></span><br><span class="line"><span class="comment"># 快速定位</span></span><br><span class="line">G                   <span class="comment"># 快速跳转到最后一行</span></span><br><span class="line">gg                  <span class="comment"># 快速跳转到第一行</span></span><br><span class="line">u					<span class="comment"># 撤销操作</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-4-查看文件"><a href="#5-4-查看文件" class="headerlink" title="5.4 查看文件"></a>5.4 查看文件</h5><blockquote>
+<p>根据不同的业务, 可以选择不同的查看方式</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看文件，直接展示到最后一行</span></span><br><span class="line"><span class="built_in">cat</span> 文件名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从最后一行开始展示</span></span><br><span class="line"><span class="built_in">tac</span> 文件名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从第一行开始查看文件内容，展示全部</span></span><br><span class="line"><span class="built_in">nl</span> 文件名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示文件的用时，展示行号</span></span><br><span class="line">more 文件名</span><br><span class="line"><span class="comment"># 查看大文件时，可以一页一页的向下翻</span></span><br><span class="line"><span class="comment"># 嗯space向下翻页，退出时摁q</span></span><br><span class="line"></span><br><span class="line">less 文件名</span><br><span class="line"><span class="comment"># 查看大文件时，可以任意的向上或者向下翻</span></span><br><span class="line"><span class="comment"># 向上或向下翻页摁PageUp和PageDown，一行一行查看，摁光标的↑↓</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只查看前几行</span></span><br><span class="line"><span class="built_in">head</span> 文件名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只查看后几行</span></span><br><span class="line"><span class="built_in">tail</span> 文件名</span><br><span class="line"><span class="comment"># tail -f 日志 监控日志</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-5-移动-重命名文件"><a href="#5-5-移动-重命名文件" class="headerlink" title="5.5 移动 , 重命名文件"></a>5.5 移动 , 重命名文件</h5><blockquote>
+<p>移动、重命名目录，会根据第二个参数指定具体操作逻辑</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> 文件名 新文件名 | 路径</span><br><span class="line"><span class="comment"># 如果第二个参数指定的路径不存在，就是重命名，如果第二个参数的路径存在，就是移动</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-6-复制文件"><a href="#5-6-复制文件" class="headerlink" title="5.6 复制文件"></a>5.6 复制文件</h5><blockquote>
+<p>复制文件到指定目录下</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> 文件名 目录</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-7-删除文件"><a href="#5-7-删除文件" class="headerlink" title="5.7 删除文件"></a>5.7 删除文件</h5><blockquote>
+<p>删除文件方式</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> [-f] 文件名</span><br><span class="line"><span class="comment"># -f：是否询问</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="六-Linux-压缩包命令"><a href="#六-Linux-压缩包命令" class="headerlink" title="六 Linux 压缩包命令"></a>六 Linux 压缩包命令</h4><h5 id="6-1-针对tar命令"><a href="#6-1-针对tar命令" class="headerlink" title="6.1 针对tar命令"></a>6.1 针对tar命令</h5><blockquote>
+<p>Linux中常用的压缩包，大多是.tar，.tar.gz，tgz的</p>
+</blockquote>
+<h5 id="6-2-解压压缩包"><a href="#6-2-解压压缩包" class="headerlink" title="6.2 解压压缩包"></a>6.2 解压压缩包</h5><blockquote>
+<p>针对压缩包后缀的情况，采用不同的参数，否则可能会损失文件</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tar [-zxvf] 压缩包名称 [-C 路径]</span><br><span class="line"><span class="comment"># -z： 代表压缩包后缀是.gz的</span></span><br><span class="line"><span class="comment"># -x： 代表解压</span></span><br><span class="line"><span class="comment"># -v： 解压时，打印详细信息</span></span><br><span class="line"><span class="comment"># -f： -f选项必须放在所有选项的最后，代表指定文件名称</span></span><br><span class="line"><span class="comment"># -C 路径： 代表将压缩包内容解压到指定路径</span></span><br><span class="line"></span><br><span class="line">tar -zxvf jdk8.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6-3-打包成压缩包"><a href="#6-3-打包成压缩包" class="headerlink" title="6.3 打包成压缩包"></a>6.3 打包成压缩包</h5><blockquote>
+<p>可以将多个文件以及目录打包成压缩包，根据选择的参数指定压缩包名</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">tar [-zcvf] 压缩包名称 文件1 文件2 目录1 目录2 ...</span><br><span class="line"><span class="comment"># -c： 代表打包</span></span><br><span class="line"><span class="comment"># 其他参数同上</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6-4-针对zip类型压缩包"><a href="#6-4-针对zip类型压缩包" class="headerlink" title="6.4 针对zip类型压缩包"></a>6.4 针对zip类型压缩包</h5><blockquote>
+<p>Linux不仅仅针对tar类型的压缩包，也支持zip，rar这种Windows下的压缩包。</p>
+<p>不过需要安装软件针对对各种类型压缩包的操作</p>
+</blockquote>
+<h6 id="6-4-1-安装软件"><a href="#6-4-1-安装软件" class="headerlink" title="6.4.1 安装软件"></a>6.4.1 安装软件</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">yum -y install zip     <span class="comment"># 打包程序</span></span><br><span class="line">yum -y install unzip   <span class="comment"># 解压程序</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="6-4-2-解压以及打包"><a href="#6-4-2-解压以及打包" class="headerlink" title="6.4.2 解压以及打包"></a>6.4.2 解压以及打包</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">unzip 压缩包名称</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包</span></span><br><span class="line">zip 压缩包名称 文件1 文件2 目录1 目录2 ...</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="七-用户-amp-用户组的操作"><a href="#七-用户-amp-用户组的操作" class="headerlink" title="七 用户 &amp; 用户组的操作"></a>七 用户 &amp; 用户组的操作</h4><h5 id="7-1-用户的常用操作命令"><a href="#7-1-用户的常用操作命令" class="headerlink" title="7.1 用户的常用操作命令"></a>7.1 用户的常用操作命令</h5><blockquote>
+<p>Linux是一个多用户的操作系统，任何一个用户想要操作Linux操作系统，必须向系统管理员申请一个账号才可以，并且以这个账号的身份去操作Linux。</p>
+<p>用户的账号一方面可以帮助系统管理员追踪当前用户的操作。另一方面可以控制当前用户对系统资源访问。</p>
+</blockquote>
+<h6 id="7-1-1-用户的创建"><a href="#7-1-1-用户的创建" class="headerlink" title="7.1.1 用户的创建"></a>7.1.1 用户的创建</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">useradd [-cgd] [选项指定的具体内容] 用户名</span><br><span class="line"><span class="comment"># -c：代表comment，给用户添加一段注释</span></span><br><span class="line"><span class="comment"># -g：代表group，可以修改用户的所在组</span></span><br><span class="line"><span class="comment"># -d：代表指定用户的HOME目录</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="7-1-2-设置用户密码"><a href="#7-1-2-设置用户密码" class="headerlink" title="7.1.2 设置用户密码"></a>7.1.2 设置用户密码</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="7-1-3-切换用户"><a href="#7-1-3-切换用户" class="headerlink" title="7.1.3 切换用户"></a>7.1.3 切换用户</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">su 用户名</span><br><span class="line"><span class="comment"># [root@localhost ~]#   -&gt; root用户在本地登录，并且当前在~目录下，#代表是超级管理员</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="7-1-4-删除用户"><a href="#7-1-4-删除用户" class="headerlink" title="7.1.4 删除用户"></a>7.1.4 删除用户</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">userdel [-r] 用户名</span><br><span class="line"><span class="comment"># -r： 代表删除用户的同时，删除该用户的HOME目录</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="7-1-5-修改用户"><a href="#7-1-5-修改用户" class="headerlink" title="7.1.5 修改用户"></a>7.1.5 修改用户</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">usermod [-cgd] [选项指定的具体内容] 用户名</span><br><span class="line"><span class="comment"># -c：代表comment，给用户添加一段注释</span></span><br><span class="line"><span class="comment"># -g：代表group，可以修改用户的所在组</span></span><br><span class="line"><span class="comment"># -d：代表指定用户的HOME目录</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="7-2-用户组的操作"><a href="#7-2-用户组的操作" class="headerlink" title="7.2 用户组的操作"></a>7.2 用户组的操作</h5><blockquote>
+<p>用户的身份除了用户本身，还会分配到指定的用户组，可以通过用户组对设置一些文件的操作权限</p>
+</blockquote>
+<h6 id="7-2-1-创建用户组"><a href="#7-2-1-创建用户组" class="headerlink" title="7.2.1 创建用户组"></a>7.2.1 创建用户组</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">groupadd 用户组名</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="7-2-2-修改用户组"><a href="#7-2-2-修改用户组" class="headerlink" title="7.2.2 修改用户组"></a>7.2.2 修改用户组</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">groupmod [-n] [选项指定的具体内容] 用户组名</span><br><span class="line"><span class="comment"># -n 修改用户组名称</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="7-2-3-删除用户组"><a href="#7-2-3-删除用户组" class="headerlink" title="7.2.3 删除用户组"></a>7.2.3 删除用户组</h6><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">groupdel 用户组名</span><br><span class="line"><span class="comment"># 只能删除不存在用户的用户组</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="八-文件权限的修改"><a href="#八-文件权限的修改" class="headerlink" title="八 文件权限的修改"></a>八 文件权限的修改</h4><blockquote>
+<p>在Linux中输入ls -l 或者 ll查看文件和目录的详细信息</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">文件详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/02/Linux/1586268971368.png"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>实例中，a目录的第一个属性用“d”标识这个a是一个目录。</p>
+<p>anaconda-ks.cfg第一个属性用“-”标识他是一个文件。</p>
+<p>在Linux文件详情的后面属性需要分为三组查看</p>
+<ul>
+<li>rwx： 代表文件拥有者的权限</li>
+<li>rwx： 代表文件所属组用户的权限</li>
+<li>rwx： 代表其他用户对当前文件的操作权限<ul>
+<li>r： 代表read，读的权限</li>
+<li>w： 代表write，写的权限</li>
+<li>x： 代表execute，代表执行权限</li>
+</ul>
+</li>
+</ul>
+<p>其余信息</p>
+<ul>
+<li><p>后续的第一个root：代表当前文件的拥有者</p>
+</li>
+<li><p>后续的第二个root： 代表当前文件的所属组</p>
+</li>
+<li><p>后续分别为：文件的大小和最后修改时间等信息</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="8-1-对文件权限修改"><a href="#8-1-对文件权限修改" class="headerlink" title="8.1 对文件权限修改"></a>8.1 对文件权限修改</h5><blockquote>
+<p>使用chmod对文件的权限进行修改，一种使用数字，一种使用符号……</p>
+<ul>
+<li>数字方式方便操作，不过要修改整体权限信息</li>
+<li>符号方式更细粒度华，不过操作麻烦</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +r hello.txt</span><br><span class="line"><span class="comment"># 这是默认为三组权限加了可读权限</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> -w hello.txt</span><br><span class="line"><span class="comment"># 这是默认为三组权限减了可写权限</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-1-1-数字方式"><a href="#8-1-1-数字方式" class="headerlink" title="8.1.1 数字方式"></a>8.1.1 数字方式</h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [-R] 777 文件|目录</span><br><span class="line"><span class="comment"># 上面三组是为三组权限都给予可读可写可执行 4+2+1=7</span></span><br><span class="line"><span class="comment"># rwx在这三个权限中r：4，w：2，x：1   0: 无权限</span></span><br><span class="line"><span class="comment"># -R： 当修改一个目录权限时，可以添加-R，将目录下的全部内容，都修改权限。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-1-2-符号方式"><a href="#8-1-2-符号方式" class="headerlink" title="8.1.2 符号方式"></a>8.1.2 符号方式</h5><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [-R] a=rw 文件|目录</span><br><span class="line"><span class="comment"># user：u，group：g，other：o，all：a</span></span><br><span class="line"><span class="comment"># read：r，write：w，execute：x</span></span><br><span class="line"><span class="comment"># 赋予权限的方式 , 添加：+，减掉：-，设定：=</span></span><br><span class="line"><span class="comment"># -R： 当修改一个目录权限时，可以添加-R，将目录下的全部内容，都修改权限。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="8-2-文件拥有者及所属组修改"><a href="#8-2-文件拥有者及所属组修改" class="headerlink" title="8.2 文件拥有者及所属组修改"></a>8.2 文件拥有者及所属组修改</h5><blockquote>
+<p>chown可以直接修改拥有者和所属组，chgrp只能修改所属组……</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改文件的拥有者和所属组</span></span><br><span class="line"><span class="built_in">chown</span> [-R] 拥有者：所属组 文件|目录</span><br><span class="line"><span class="comment"># 修改文件的拥有者</span></span><br><span class="line"><span class="built_in">chown</span> [-R] 拥有者 文件|目录</span><br><span class="line"><span class="comment"># 修改文件的所属组</span></span><br><span class="line"><span class="built_in">chgrp</span> [-R] 所属组 文件|目录</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="九-Linux-的其他操作命令"><a href="#九-Linux-的其他操作命令" class="headerlink" title="九 Linux 的其他操作命令"></a>九 Linux 的其他操作命令</h4><h5 id="9-1-进程操作"><a href="#9-1-进程操作" class="headerlink" title="9.1 进程操作"></a>9.1 进程操作</h5><blockquote>
+<p>需要用到类似Windows的结束进程时，在Linux下需要使用如下命令</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ps -ef </span><br><span class="line"><span class="comment"># 查看全部正在运行的进程</span></span><br><span class="line">ps -ef | grep 搜索的内容</span><br><span class="line"><span class="comment"># 杀死进程</span></span><br><span class="line"><span class="built_in">kill</span> -9 pid</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="9-2-服务的操作"><a href="#9-2-服务的操作" class="headerlink" title="9.2 服务的操作"></a>9.2 服务的操作</h5><blockquote>
+<p>和Windows下的服务操作一致，只需使用如下命令，默认为centos7版本</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 针对服务的启动，停止，重启，开机自动启动，禁止开机自动启动，查看服务状态。</span></span><br><span class="line">systemctl start|stop|restart|<span class="built_in">enable</span>|<span class="built_in">disable</span>|status 服务名称</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="9-3-端口号查看"><a href="#9-3-端口号查看" class="headerlink" title="9.3 端口号查看"></a>9.3 端口号查看</h5><blockquote>
+<p>如发现端口号被占用，可以使用如下方式查找pid，并结束进程</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 想使用指定的命令需要事先下载netstat</span></span><br><span class="line">yum -y install net-tools</span><br><span class="line"><span class="comment"># 查看端口号占用情况</span></span><br><span class="line">netstat -naop | grep 端口号</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="9-4-访问地址"><a href="#9-4-访问地址" class="headerlink" title="9.4 访问地址"></a>9.4 访问地址</h5><blockquote>
+<p>类似浏览器访问路径，无法图形化显示，一般用于测试</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl 访问地址</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="9-5-查找文件"><a href="#9-5-查找文件" class="headerlink" title="9.5 查找文件"></a>9.5 查找文件</h5><blockquote>
+<p>在Linux中查找指定文件，参数较多，如下为根据文件名称查询</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">find 路径 -<span class="built_in">type</span> f | grep 文件名</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="十-安装JDK"><a href="#十-安装JDK" class="headerlink" title="十 安装JDK"></a>十 安装JDK</h4><blockquote>
+<p>linux 安装jdk只需要配置下环境变量就行了, 先解压jdk包</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"> tar -zxvf jdk8.0.tar.gz -C /opt/</span><br><span class="line"> <span class="built_in">mv</span> jdk8.0 java</span><br><span class="line"> <span class="comment"># 解压到opt目录</span></span><br><span class="line"> <span class="built_in">cd</span> /root/</span><br><span class="line"> <span class="built_in">ls</span> -la</span><br><span class="line"> vi .bash_profile</span><br><span class="line"> </span><br><span class="line"> <span class="comment"># 在这个文件添加java的配置</span></span><br><span class="line">JAVA_HOME=/opt/java</span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/bin <span class="comment"># : 是连接符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#	接着 wq 保存退出来</span></span><br><span class="line"><span class="built_in">source</span> .bash_profile <span class="comment"># 立即执行文件配置生效</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="十一-部署Tomcat"><a href="#十一-部署Tomcat" class="headerlink" title="十一 部署Tomcat"></a>十一 部署Tomcat</h4><blockquote>
+<p>通过 wget 下载 Tomcat</p>
+<p>首先得安装 wget</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">yum install -y wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tomcat 地址下载</span></span><br><span class="line">wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/bin/apache-tomcat-8.5.84.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者现在windows 下载好,然后Xftp 上传至linux</span></span><br><span class="line">tar -zxvf apache-tomcat-8.5.84.tar.gz -C /opt/</span><br><span class="line"><span class="built_in">cd</span> /opt/tomcat8.0/bin</span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 启动tomcat</span></span><br><span class="line">./startup.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动后在游览器输入linux ip地址:8080</span></span><br><span class="line"><span class="comment"># 如果无法访问 , linux 输入命令</span></span><br><span class="line">jps</span><br><span class="line"><span class="comment"># Bootstrap 就是tomcat , 说明tomcat启动成功</span></span><br><span class="line"><span class="comment"># 接下来使用 curl 来证明是不是网络问题</span></span><br><span class="line">curl www.baidu.com <span class="comment"># 可以的话不是网络问题</span></span><br><span class="line">curl http://localhost:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面都行的话 , 那就是防火墙的问题, 没有放行</span></span><br><span class="line"><span class="comment"># 关闭防火墙之后就可以在游览器访问了</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭 Tomcat</span></span><br><span class="line"><span class="comment"># 先 jps 看到 Bootstrap 前面的代码, 例如6197</span></span><br><span class="line"><span class="built_in">kill</span> 6197</span><br><span class="line"><span class="comment"># 或者 在Tomcat 目录下</span></span><br><span class="line">./shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙：</p>
+<ul>
+<li>systemctl stop firewalld 关闭</li>
+<li>systemctl disable firewalld （重启之后防火墙也不会再打开了）</li>
+</ul>
+<h4 id="十二-部署-SpringBoot-工程"><a href="#十二-部署-SpringBoot-工程" class="headerlink" title="十二 部署 SpringBoot 工程"></a>十二 部署 SpringBoot 工程</h4><blockquote>
+<p>首先把 vue 工程打包成 静态文件 , 通过命令 npm run build , 打包完成之后放在 dist 目录 , 接着把该目录文件复制于spring boot 的resources 中static文件夹下。</p>
+<p>然后 Idea 将工程打包成 jar 包</p>
+<p>通过 Xftp 将jar 上传至 linux 服务</p>
+<p>启动 Spring Boot：</p>
+<p><code>nohup java -jar vhr-admin-0.0.1.jar &gt; 8081.log &amp;</code></p>
+<p><code>nohup</code> 表示当前窗口关闭的时候，不要挂起应用</p>
+<p>&amp; 表示应用再后台运行</p>
+<p><code>&gt;8081.log</code> 表示日志输出到 8081.log 文件中</p>
+<p>关闭springboot 工程</p>
+<p>jps</p>
+<p> kill 进程代码</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL</title>
     <url>/2022/12/20/MySQL/</url>
     <content><![CDATA[<img src="/2022/12/20/MySQL/image-20221108183846003.png" alt="image-20221108183846003">
@@ -1163,6 +1565,31 @@
       </tags>
   </entry>
   <entry>
+    <title>第一篇文章</title>
+    <url>/2022/12/07/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<p>你不努力就会被社会淘汰 , 但只要你努力 ,过几年才会被淘汰。</p>
+<span id="more"></span>
+
+<p>关于明天的事 , 后天就知道了</p>
+<p>情况就是这个情况, 具体是什么情况还得看情况</p>
+<p>复制别人的人生没有意义 ,</p>
+<p>分不清「梦想」和「欲望」是浪费时间 ,</p>
+<p>自大或自卑总让人们无法看清真实客观的自己 , </p>
+<p>偏离内心越来越远 , </p>
+<p>总是不满足总是有所图 ,</p>
+<p>乐此不疲一意孤行直到透支所有动力 , </p>
+<p>看见了吗 ,</p>
+<p>走在街上的有多少是活着的尸体 , </p>
+<p>风尘仆仆的，麻木不仁的，油头粉面的庞大而坚固的金字塔规则下产生出的群体</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>日常</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Shiro</title>
     <url>/2022/12/31/Shiro/</url>
     <content><![CDATA[<p>2022最后一天了, 一年又一年, 2022不顺再见 , 2023新的一年, 身体健康, 万事大吉, 心想事成, 好运连连。</p>
@@ -1534,19 +1961,6 @@
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一篇文章</title>
-    <url>/2022/12/07/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<p>万里无云的天空,没有一朵云</p>
-<span id="more"></span>
-
-<p>关于明天的事 , 后天就知道了</p>
-<p>情况就是这个情况, 具体是什么情况还得看情况</p>
-]]></content>
-      <tags>
-        <tag>-日常</tag>
       </tags>
   </entry>
 </search>

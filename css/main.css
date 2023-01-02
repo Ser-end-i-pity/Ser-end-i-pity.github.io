@@ -2479,7 +2479,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ebb061;
+  background: #c2ff21;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2542,7 +2542,7 @@ body {
 }
 .main .main-inner .post-block {
   margin-top: 15px;
-  padding: 20px;
+  padding: 10px;
   background: rgba(255,255,255,0.8);
   border-radius: 5px;
 }
@@ -2558,6 +2558,9 @@ blockquote p {
   border: none !important;
   transition-property: unset;
   padding: 0px 15px;
+}
+.main .column .sidebar .sidebar-inner .sidebar-nav li {
+  color: #d9d4d4;
 }
 .post-button .btn:hover {
   color: #fff !important;
@@ -2607,6 +2610,7 @@ span.exturl:hover {
 }
 .sidebar {
   background: rgba(62,60,61,0.8);
+  box-shadow: inset 0 2px 6px #daf7ee;
 }
 .sidebar-toggle {
   height: 25px;
@@ -2654,6 +2658,8 @@ span.exturl:hover {
   border-bottom: 1px solid #918f8f;
   color: rgba(58,57,57,0.988);
   font-size: 18px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 5px;
 }
 .main .main-inner .pagination .page-number.current {
   background: rgba(47,146,238,0.961);
