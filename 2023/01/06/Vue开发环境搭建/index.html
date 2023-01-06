@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ser-end-i-pity.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="nodejs 环境搭建 , 安装 axios , ElementUI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue开发环境搭建">
+<meta property="og:url" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="猫尛妖">
+<meta property="og:description" content="nodejs 环境搭建 , 安装 axios , ElementUI">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021062520117.jpg">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021064957572.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021070810856.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/11.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/12.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/2022031315224675.jpg">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/15.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/21.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/01.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/02.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/03.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/04.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/05.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/06.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/07.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/09.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/4545.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/10.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/14.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/16.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/888.png">
+<meta property="article:published_time" content="2023-01-06T10:13:35.000Z">
+<meta property="article:modified_time" content="2023-01-06T10:24:51.247Z">
+<meta property="article:author" content="猫尛妖">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021062520117.jpg">
+
+
+<link rel="canonical" href="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/","path":"2023/01/06/Vue开发环境搭建/","title":"Vue开发环境搭建"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vue开发环境搭建 | 猫尛妖</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">猫尛妖</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">猫尛妖</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E5%AE%89%E8%A3%85-node-js"><span class="nav-number">1.</span> <span class="nav-text">一 安装 node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85-cnpm"><span class="nav-number">2.</span> <span class="nav-text">二 安装 cnpm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E5%AE%89%E8%A3%85-vue-cli-%E8%84%9A%E6%89%8B%E6%9E%B6%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">三 安装 vue -cli 脚手架构建工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E4%BD%BF%E7%94%A8%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85-vue-cli"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 使用如下命令安装 vue-cli</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 检查是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E5%88%9B%E5%BB%BA%E5%9F%BA%E4%BA%8E-webpack-%E6%A8%A1%E6%9D%BF%E7%9A%84%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">四 创建基于 webpack 模板的新项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD-Element-%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">六 Element 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83-axios-%E5%AE%89%E8%A3%85"><span class="nav-number">6.</span> <span class="nav-text">七 axios 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AB-%E8%B7%A8%E5%9F%9F%E9%85%8D%E7%BD%AE"><span class="nav-number">7.</span> <span class="nav-text">八 跨域配置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫尛妖"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">猫尛妖</p>
+  <span style="color:#fff"><i class="fas fa-map-marker-alt"></i> 广东</span>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ser-end-i-pity" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ser-end-i-pity" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kang.time@qq.com" title="E-Mail → mailto:kang.time@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=3490891825&website=www.oicqzone.com" title="QQ → tencent:&#x2F;&#x2F;AddContact&#x2F;?fromId&#x3D;45&amp;fromSubId&#x3D;1&amp;subcmd&#x3D;all&amp;uin&#x3D;3490891825&amp;website&#x3D;www.oicqzone.com" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+    
+	<div id="Date" style="color: #e5dfdf;text-align:center;font-weight:bold;"></div>
+	<script type="text/javascript"> 
+		function showDate(){
+		var w1 = ['日', '一', '二', '三', '四', '五', '六'];
+		setInterval(function(){   
+		var date=new Date();   
+		var year=date.getFullYear(); //获取当前年份   
+		var mon=date.getMonth()+1; //获取当前月份   
+		var da=date.getDate(); //获取当前日   
+		var day=w1[date.getDay()]; //获取当前星期几   
+		var h=('0'+date.getHours()).slice(-2); //获取小时   
+		var m=('0'+date.getMinutes()).slice(-2); //获取分钟   
+		var s=('0'+date.getSeconds()).slice(-2); //获取秒 
+		var d=document.getElementById('Date');    
+		d.innerHTML='今天是'+year+'年'+mon+'月'+da+'日'+'星期'+day+' '+h+':'+m+':'+s;  },1000)  }
+		showDate();
+		</script>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=335 src="//music.163.com/outchain/player?type=0&id=7708016601&auto=1&height=430"></iframe>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ser-end-i-pity.github.io/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="猫尛妖">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="猫尛妖">
+      <meta itemprop="description" content="Java">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vue开发环境搭建 | 猫尛妖">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue开发环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-06 18:13:35 18:13:35" itemprop="dateCreated datePublished" datetime="2023-01-06T18:13:35+08:00">2023-01-06 18:13:35</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-06 18:24:51 18:24:51" itemprop="dateModified" datetime="2023-01-06T18:24:51+08:00">2023-01-06 18:24:51</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>nodejs 环境搭建 , 安装 axios , ElementUI</p>
+<span id="more"></span>
+
+<blockquote>
+<p>cli: Command Line 命令行工具，vue-cli就是vue的命令行工具，也称之为脚手架，使用vue-cli提供的各种命令可以拉取、创建、运行我们需要使用到的框架，比如webpack、Element UI、Element Admin等等。那么要想使用vue-cli命令，需要先安装node.js。</p>
+</blockquote>
+<p>Node.js 是一个javascript运行环境。它让javascript可以<strong>开发后端程序</strong>，实现几乎其他后端语言实现的所有功能，可以与PHP、Java、Python、.NET、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Ruby&spm=1001.2101.3001.7020">Ruby</a>等后端语言平起平坐。</p>
+<p>Nodejs是基于<strong>V8引擎</strong>，V8是Google发布的开源JavaScript引擎，本身就是用于Chrome浏览器的js解释部分，但是Ryan Dahl 把这个V8搬到了服务器上，用于做服务器的软件。</p>
+<p>引用网友一句话：node.js就是一个前端觉得写个功能还要等后端捣鼓半天，然后干脆就自己用javascript把后端搞定的一个东西。</p>
+<p>不过很多前端开发都是用node的npm 包管理器，做前端开发。</p>
+<p><strong>Nodejs语法完全是js语法，只要懂js基础就可以学会Node.js后端开发</strong></p>
+<p>Node.js 打破了过去 JavaScript 只能在浏览器中运行的局面。前后端编程环境统一，可以大大降低开发成本。</p>
+<h4 id="一-安装-node-js"><a href="#一-安装-node-js" class="headerlink" title="一 安装 node.js"></a>一 安装 node.js</h4><blockquote>
+<p>进入官网 <em><a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></em></p>
+</blockquote>
+<p><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021062520117.jpg"></p>
+<p> 根据电脑操作系统，选择相应版本的文件进行下载。 </p>
+<p>下载文件后双击进行安装, 基本是一路按 Next , 安装路径可以更改下。安装完之后测试 node.js 是否安装成功, 在dos 窗口中输入”<code>node -v</code>“ 查看版本,如果看到版本, 就表示安装成功。    </p>
+<img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021064957572.png" alt="image-20221021064957572" style="zoom: 150%;">
+
+
+
+<h4 id="二-安装-cnpm"><a href="#二-安装-cnpm" class="headerlink" title="二 安装 cnpm"></a>二 安装 cnpm</h4><ul>
+<li>说明：npm(node package manager)是node.js的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）。</li>
+<li>使用npm安装插件：命令提示符执行 npm install <name>。</name></li>
+<li> 选装cnpm。因为npm安装插件是从国外服务器下载，受网络影响大，可能会出现异常，如果npm的服务器在中国就好了，于是乐于分享的淘宝团队干了这事。来自官网：“这事一个完整npmjs.org镜像，你可以用此代替官方版本（只读），同步频率目前为10分钟一次，尽量保证与官方服务同步。”</li>
+<li>安装命令：<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code>。</li>
+<li>查看版本：输入<code>cnpm -v</code>，可以查看当前cnpm的版本。</li>
+<li>之后使用npm 命令时就可以替成 cnpm。</li>
+</ul>
+<h4 id="三-安装-vue-cli-脚手架构建工具"><a href="#三-安装-vue-cli-脚手架构建工具" class="headerlink" title="三 安装 vue -cli 脚手架构建工具"></a>三 安装 vue -cli 脚手架构建工具</h4><h5 id="3-1-使用如下命令安装-vue-cli"><a href="#3-1-使用如下命令安装-vue-cli" class="headerlink" title="3.1 使用如下命令安装 vue-cli"></a>3.1 使用如下命令安装 vue-cli</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cnpm install vue-cli -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="comment"># cnpm install -g @vue/cli</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>npm： 使用node.js的命令</li>
+<li>install： 安装</li>
+<li>vue-cli： 要安装的vue-cli</li>
+<li>-g： 全局安装</li>
+</ul>
+<h5 id="3-2-检查是否安装成功"><a href="#3-2-检查是否安装成功" class="headerlink" title="3.2 检查是否安装成功"></a>3.2 检查是否安装成功</h5><p>安装完成之后输入 <code>vue -V</code> (注意这里是大写的 V ),如果出现版本号, 则说明安装成功。</p>
+<img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20221021070810856.png" alt="image-20221021070810856" style="zoom:200%;">
+
+
+
+<h4 id="四-创建基于-webpack-模板的新项目"><a href="#四-创建基于-webpack-模板的新项目" class="headerlink" title="四 创建基于 webpack 模板的新项目"></a>四 创建基于 webpack 模板的新项目</h4><p>就像maven一样，vue为我们提供了一些官方项目骨架。使用<code>vue list</code>命令可以列出当前官方提供的命令，可以使用这些骨架来快速搭建出项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue list</span><br></pre></td></tr></table></figure>
+
+
+
+<p>要创建项目, 首先要选定目录 , 然后在命令行中把目录转到选定的目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack my-app</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>webpack: 骨架名称</li>
+<li>my-app: 为自定义的项目名称</li>
+<li>自定义的项目名称中不能包含大写字母</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>过程中会出现如下界面，需要手动操作。</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/11.png"></td>
+</tr>
+<tr>
+<td><strong>出现如下界面，表示安装成功。</strong></td>
+</tr>
+<tr>
+<td><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/12.png"></td>
+</tr>
+</tbody></table>
+<p>输入 <code>cd my-project1</code> 切换到项目目录 , 接着再输入 <code>npm run dev</code>运行项目。</p>
+<p> 运行成功以后，根据提示，在浏览器中输入<a href="http://localhost:8080,浏览器显示的页面如下：">http://localhost:8080,浏览器显示的页面如下：</a> </p>
+<p> <img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/2022031315224675.jpg" alt="img"></p>
+<table>
+<thead>
+<tr>
+<th>项目目录及各目录介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/15.png"></td>
+</tr>
+<tr>
+<td><strong>IDEA 安装 vue 插件</strong></td>
+</tr>
+<tr>
+<td><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/21.png"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>在idea中配置，让idea能够操作.vue文件</p>
+</blockquote>
+<p><strong>vue ui</strong></p>
+<blockquote>
+<p>windows 桌面 按 win+r 输入 <code>vue ui</code>打开游览器图形化桌面 创建vue 工程</p>
+</blockquote>
+<p><strong>IDEA 创建 Vue 项目</strong></p>
+<img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/01.png" style="zoom:200%;">
+
+<p><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/02.png"></p>
+<img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/03.png" style="zoom:200%;">
+
+<p><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/04.png"></p>
+<p><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/05.png"></p>
+<p><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/06.png"></p>
+<h4 id="六-Element-安装"><a href="#六-Element-安装" class="headerlink" title="六 Element 安装"></a>六 Element 安装</h4><table>
+<thead>
+<tr>
+<th align="center">cnpm i element-ui -S</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/07.png"></td>
+</tr>
+<tr>
+<td align="center"><strong>package.json 添加了配置</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/09.png" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td align="center"><strong>main.js导入并引入</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/4545.png" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h4 id="七-axios-安装"><a href="#七-axios-安装" class="headerlink" title="七 axios 安装"></a>七 axios 安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i axios -S</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/10.png" style="zoom:200%;">
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i vue-axios -S</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/14.png" style="zoom:200%;">
+
+<table>
+<thead>
+<tr>
+<th align="center">查看是否安装成功</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/16.png" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td align="center"><strong>导入并引入</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="/2023/01/06/Vue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/888.png" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h4 id="八-跨域配置"><a href="#八-跨域配置" class="headerlink" title="八 跨域配置"></a>八 跨域配置</h4><p>config -&gt; CorsConfiguration </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CorsConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> &#123;</span><br><span class="line">        registry.addMapping(<span class="string">&quot;/**&quot;</span>)</span><br><span class="line">                .allowedOriginPatterns(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                .allowedHeaders(CorsConfiguration.ALL)</span><br><span class="line">                .allowedMethods(CorsConfiguration.ALL)</span><br><span class="line">                .allowCredentials(<span class="literal">true</span>)</span><br><span class="line">                .maxAge(<span class="number">3600</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者直接在controller 类上加上  <code>@CrossOrigin</code> 注解。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/04/SpringBoot-Vue%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" rel="prev" title="SpringBoot Vue增删改查">
+                  <i class="fa fa-chevron-left"></i> SpringBoot Vue增删改查
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 - <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫尛妖</span>
+</div>
+  <div class="powered-by">
+   本站已安全运行:
+	<span id="momk"></span>
+	<script language=javascript>
+	function show_date_time(){
+		window.setTimeout("show_date_time()", 1000);
+		BirthDay=new Date("12-07-2022 10:48:24");//建站日期
+		today=new Date();
+		timeold=(today.getTime()-BirthDay.getTime());
+		sectimeold=timeold/1000
+		secondsold=Math.floor(sectimeold);
+		msPerDay=24*60*60*1000
+		e_daysold=timeold/msPerDay
+		daysold=Math.floor(e_daysold);
+		e_hrsold=(daysold-e_daysold)*-24;
+		hrsold=Math.floor(e_hrsold);
+		e_minsold=(hrsold-e_hrsold)*-60;
+		minsold=Math.floor((hrsold-e_hrsold)*-60);
+		seconds=Math.floor((minsold-e_minsold)*-60);
+		momk.innerHTML=daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒" ;
+	}
+show_date_time();
+</script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.8" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+</body>
+</html>
