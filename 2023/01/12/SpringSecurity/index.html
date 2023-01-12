@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ser-end-i-pity.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SpringSecurity 安全框架 , 深入浅出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringSecurity">
+<meta property="og:url" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/index.html">
+<meta property="og:site_name" content="猫尛妖">
+<meta property="og:description" content="SpringSecurity 安全框架 , 深入浅出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105070942231.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105112743249.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105112843916.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105112930913.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105115646321.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105144708247.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105145512838.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105152022131.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105153335817.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105153622450.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105153826513.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105155711396.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105155730212.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105155745313.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105161551771.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105161723609.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105163950372.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105164005950.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106045434553.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106045706555.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106050216421.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106053027570.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106060117046.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106062907005.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106064505343.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106064927211.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106131452495.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106131637662.png">
+<meta property="og:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230106131808204.png">
+<meta property="article:published_time" content="2023-01-12T02:11:09.000Z">
+<meta property="article:modified_time" content="2023-01-12T03:27:22.857Z">
+<meta property="article:author" content="猫尛妖">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/image-20230105070942231.png">
+
+
+<link rel="canonical" href="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/","path":"2023/01/12/SpringSecurity/","title":"SpringSecurity"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SpringSecurity | 猫尛妖</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">猫尛妖</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">猫尛妖</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">一 核心功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-Security-%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">二 Security 简单入门</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 新建项目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 用户配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-1-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 配置文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-2-%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 配置类</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 自定义登录页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%99%BB%E5%BD%95%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 自定义登录返回数据</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-1-%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 登录成功</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-2-%E7%99%BB%E5%BD%95%E5%A4%B1%E8%B4%A5"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 登录失败</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-3-%E6%9C%AA%E8%AE%A4%E8%AF%81%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.3 未认证处理方案</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-4-4-%E6%B5%8B%E8%AF%95"><span class="nav-number">2.4.4.</span> <span class="nav-text">2.4.4 测试</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E8%AF%BB%E5%8F%96%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 数据库中读取用户信息</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.5.1.</span> <span class="nav-text">2.5.1 数据库表设计</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-5-2-%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.5.2 创建工程</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-6-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 自定义登录接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-7-%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 密码加密</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-7-1-%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.7.1.</span> <span class="nav-text">2.7.1 介绍</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-7-2-PasswordEncoder-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.7.2 PasswordEncoder 的作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-7-3-BCryptPasswordEncoder"><span class="nav-number">2.7.3.</span> <span class="nav-text">2.7.3 BCryptPasswordEncoder</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-7-4-DelegatingPasswordEncoder"><span class="nav-number">2.7.4.</span> <span class="nav-text">2.7.4 DelegatingPasswordEncoder</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-7-5-%E5%AF%86%E7%A0%81%E5%8D%87%E7%BA%A7"><span class="nav-number">2.7.5.</span> <span class="nav-text">2.7.5 密码升级</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-8-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-number">2.8.</span> <span class="nav-text">2.8 权限控制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-1-%E5%87%86%E5%A4%87%E6%B5%8B%E8%AF%95%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.8.1.</span> <span class="nav-text">2.8.1 准备测试接口</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="nav-number">2.8.2.</span> <span class="nav-text">2.8.2 数据库表</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-3-%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE"><span class="nav-number">2.8.3.</span> <span class="nav-text">2.8.3 权限配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-4-%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">2.8.4.</span> <span class="nav-text">2.8.4 实体类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-5-%E4%B8%9A%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">2.8.5.</span> <span class="nav-text">2.8.5 业务配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-6-controller-%E7%99%BB%E5%BD%95"><span class="nav-number">2.8.6.</span> <span class="nav-text">2.8.6 controller 登录</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-7-%E8%A7%92%E8%89%B2%E7%BB%A7%E6%89%BF"><span class="nav-number">2.8.7.</span> <span class="nav-text">2.8.7 角色继承</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-8-8-%E6%B3%A8%E8%A7%A3%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-number">2.8.8.</span> <span class="nav-text">2.8.8 注解权限控制</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-9-%E8%AE%B0%E4%BD%8F%E6%88%91%E7%99%BB%E5%BD%95"><span class="nav-number">2.9.</span> <span class="nav-text">2.9 记住我登录</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">三 会话管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-Session-%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Session 管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-HttpSession-%E9%94%80%E6%AF%81%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 HttpSession 销毁事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-%E9%98%B2%E5%BE%A1%E4%BC%9A%E8%AF%9D%E6%94%BB%E5%87%BB"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 防御会话攻击</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-CSRF-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 CSRF 攻击与防御</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-4-1-%E9%BB%98%E8%AE%A4%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.4.1.</span> <span class="nav-text">3.4.1 默认解决方案</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-4-2-%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E6%96%B9%E6%A1%88"><span class="nav-number">3.4.2.</span> <span class="nav-text">3.4.2 前后端分离方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-JWT-%E7%99%BB%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">四 JWT 登录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E7%AE%80%E4%BB%8B"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-JWT-%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 JWT 数据格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 添加依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 准备工作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-5-%E6%B5%8B%E8%AF%95"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 测试</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="猫尛妖"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">猫尛妖</p>
+  <span style="color:#fff"><i class="fas fa-map-marker-alt"></i> 广东</span>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ser-end-i-pity" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ser-end-i-pity" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kang.time@qq.com" title="E-Mail → mailto:kang.time@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=3490891825&website=www.oicqzone.com" title="QQ → tencent:&#x2F;&#x2F;AddContact&#x2F;?fromId&#x3D;45&amp;fromSubId&#x3D;1&amp;subcmd&#x3D;all&amp;uin&#x3D;3490891825&amp;website&#x3D;www.oicqzone.com" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+    
+	<div id="Date" style="color: #e5dfdf;text-align:center;font-weight:bold;"></div>
+	<script type="text/javascript"> 
+		function showDate(){
+		var w1 = ['日', '一', '二', '三', '四', '五', '六'];
+		setInterval(function(){   
+		var date=new Date();   
+		var year=date.getFullYear(); //获取当前年份   
+		var mon=date.getMonth()+1; //获取当前月份   
+		var da=date.getDate(); //获取当前日   
+		var day=w1[date.getDay()]; //获取当前星期几   
+		var h=('0'+date.getHours()).slice(-2); //获取小时   
+		var m=('0'+date.getMinutes()).slice(-2); //获取分钟   
+		var s=('0'+date.getSeconds()).slice(-2); //获取秒 
+		var d=document.getElementById('Date');    
+		d.innerHTML='今天是'+year+'年'+mon+'月'+da+'日'+'星期'+day+' '+h+':'+m+':'+s;  },1000)  }
+		showDate();
+		</script>
+	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=335 src="//music.163.com/outchain/player?type=0&id=7708016601&auto=1&height=430"></iframe>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ser-end-i-pity.github.io/2023/01/12/SpringSecurity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="猫尛妖">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="猫尛妖">
+      <meta itemprop="description" content="Java">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SpringSecurity | 猫尛妖">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringSecurity
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-12 10:11:09 10:11:09" itemprop="dateCreated datePublished" datetime="2023-01-12T10:11:09+08:00">2023-01-12 10:11:09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-12 11:27:22 11:27:22" itemprop="dateModified" datetime="2023-01-12T11:27:22+08:00">2023-01-12 11:27:22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>SpringSecurity 安全框架 , 深入浅出</p>
+<span id="more"></span>
+
+<h4 id="一-核心功能"><a href="#一-核心功能" class="headerlink" title="一 核心功能"></a>一 核心功能</h4><p>对于一个权限管理框架而言，无论是 Shiro 还是 Spring Security，最最核心的功能，无非就是两方面： </p>
+<ul>
+<li><p>认证 </p>
+</li>
+<li><p>授权</p>
+</li>
+</ul>
+<p>通俗点说，认证就是常说的登录，授权就是权限鉴别，看看请求是否具备相应的权限。 </p>
+<p>虽然就是一个简简单单的登录，可是也能玩出很多花样来。 </p>
+<p><code>Spring Security</code> 支持多种不同的认证方式，这些认证方式有的是 <code>Spring Security</code> 自己提供的认证功 </p>
+<p>能，有的是第三方标准组织制订的，主要有如下一些：</p>
+<p>一些比较常见的认证方式： </p>
+<ul>
+<li><p>HTTP BASIC authentication headers：基于IETF RFC 标准。 </p>
+</li>
+<li><p>HTTP Digest authentication headers：基于IETF RFC 标准。 </p>
+</li>
+<li><p>HTTP X.509 client certifificate exchange：基于IETF RFC 标准。 </p>
+</li>
+<li><p>LDAP：跨平台身份验证。 </p>
+</li>
+<li><p>Form-based authentication：基于表单的身份验证。 </p>
+</li>
+<li><p>Run-as authentication：用户用户临时以某一个身份登录。 </p>
+</li>
+<li><p>OpenID authentication：去中心化认证。 </p>
+</li>
+</ul>
+<p>除了这些常见的认证方式之外，一些比较冷门的认证方式，<code>Spring Security</code> 也提供了支持。 </p>
+<ul>
+<li><p>Jasig Central Authentication Service：单点登录。 </p>
+</li>
+<li><p>Automatic “remember-me” authentication：记住我登录（允许一些非敏感操作）。 </p>
+</li>
+<li><p>Anonymous authentication：匿名登录。 </p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<p>作为一个开放的平台，Spring Security 提供的认证机制不仅仅是上面这些。</p>
+<h4 id="二-Security-简单入门"><a href="#二-Security-简单入门" class="headerlink" title="二 Security 简单入门"></a>二 Security 简单入门</h4><h5 id="2-1-新建项目"><a href="#2-1-新建项目" class="headerlink" title="2.1 新建项目"></a>2.1 新建项目</h5><p>首先新建一个 Spring Boot 项目，创建时引入 <code>Spring Security</code> 依赖和 <code>web</code> 依赖 , 目前使用的SpringBoot 版本是 2.7.7 。提示 , 2.7之后 版本与之前的版本的使用方式不同, 之前版本都是继承 <code>WebSecurityConfigurerAdapter</code>这个类,重写方法配置实现功能呢 , 2.7之后写法就不一样了。</p>
+<p>项目创建成功后，我们添加一个测试的 <code>HelloController</code>，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来什么事情都不用做，直接来启动项目。 </p>
+<p>在项目启动过程中，我们会看到如下一行日志： </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Using generated security password: 30abfb1f-36e1-446a-a79b-f70024f589ab</span><br></pre></td></tr></table></figure>
+
+<p>这就是 <code>Spring Security</code> 为默认用户 user 生成的临时密码，是一个 UUID 字符串。 </p>
+<p>接下来我们去访问 <a target="_blank" rel="noopener" href="http://localhost:8080/hello">http://localhost:8080/hello</a> 接口，就可以看到自动重定向到登录页面了：</p>
+<img src="/2023/01/12/SpringSecurity/image-20230105070942231.png" alt="image-20230105070942231" style="zoom:200%;">
+
+<p>在登录页面，默认的用户名就是 user，默认的登录密码则是项目启动时控制台打印出来的密码，输入用户名密码之后，就登录成功了，登录成功后，我们就可以访问到 /hello 接口了。 </p>
+<p>在 Spring Security 中，默认的登录页面和登录接口，都是 /login ，只不过一个是 get 请求（登录页 面），另一个是 post 请求（登录接口）。</p>
+<p><strong>可以看到，非常方便，一个依赖就保护了所有接口。</strong> </p>
+<p>在 Security 用户相关的自动化配置类在 <code>UserDetailsServiceAutoConfiguration</code> 里边，在该类的<code>getOrDeducePassword</code> 方法中，看到如下一行日志： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (user.isPasswordGenerated()) &#123;</span><br><span class="line">	logger.info(String.format(<span class="string">&quot;%n%nUsing generated security password: %s%n&quot;</span>,</span><br><span class="line">user.getPassword()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>毫无疑问，在控制台看到的日志就是从这里打印出来的。打印的条件是 <code>isPasswordGenerated</code> 方法返回 <code>true</code>，即密码是默认生成的。 </p>
+<p>进而发现，<code>user.getPassword</code> 出现在 <code>SecurityProperties</code> 中，在 SecurityProperties 中我们看到 </p>
+<p>如下定义： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * Default user name.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">private</span> <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;user&quot;</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * Password for the default user name.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">private</span> <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> UUID.randomUUID().toString();</span><br><span class="line"></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * Granted roles for the default user name.</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">private</span> List&lt;String&gt; roles = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">passwordGenerated</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，默认的用户名就是 user，默认的密码则是 UUID，而默认情况下，<code>passwordGenerated</code> 也为 <code>true</code>。 </p>
+<h5 id="2-2-用户配置"><a href="#2-2-用户配置" class="headerlink" title="2.2 用户配置"></a>2.2 用户配置</h5><p>默认的密码有一个问题就是每次重启项目都会变，这很不方便。 </p>
+<p>介绍两种非主流的用户名/密码配置方案。 </p>
+<h6 id="2-2-1-配置文件"><a href="#2-2-1-配置文件" class="headerlink" title="2.2.1 配置文件"></a>2.2.1 配置文件</h6><p>在 <code>SecurityProperties</code> 文件中，默认的用户就定义在它里边，是一个静态内部类，我们如果要定义自己的用户名密码，必然是要去覆盖默认配置，先来看下<code>SecurityProperties</code> 的定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;spring.security&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityProperties</span> &#123;</span><br></pre></td></tr></table></figure>
+
+<p>这就很清晰了，只需要以 <code>spring.security.user</code> 为前缀，去定义用户名密码即可： </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.security.user.name</span>=<span class="string">hello</span></span><br><span class="line"><span class="attr">spring.security.user.password</span>=<span class="string">123</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>properties</code> 中定义的用户名密码最终是通过 <strong>set</strong> 方法注入到属性中去的，这里顺便来看下 <code>SecurityProperties.User#setPassword</code> 方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setPassword</span><span class="params">(String password)</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (!StringUtils.hasLength(password)) &#123;</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">this</span>.passwordGenerated = <span class="literal">false</span>;</span><br><span class="line">			<span class="built_in">this</span>.password = password;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从这里可以看到，<code>application.properties</code> 中定义的密码在注入进来之后，还顺便设置了 </p>
+<p><code>passwordGenerated</code> 属性为 <code>false</code>，这个属性设置为 false 之后，控制台就不会打印默认的密码了。 </p>
+<p>此时重启项目，就可以使用自己定义的用户名/密码登录了。</p>
+<h6 id="2-2-2-配置类"><a href="#2-2-2-配置类" class="headerlink" title="2.2.2 配置类"></a>2.2.2 配置类</h6><p>除了上面的配置文件这种方式之外，也可以在配置类中配置用户名/密码。 </p>
+<p>在配置类中配置，就要指定 <code>PasswordEncoder</code> (密码加密)了，这是一个非常关键的东西。 </p>
+<p>具体配置: config-&gt; SecurityConfig</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    UserDetailsService <span class="title function_">userDetailsService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">InMemoryUserDetailsManager</span> <span class="variable">users</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InMemoryUserDetailsManager</span>();</span><br><span class="line">        users.createUser(User.withUsername(<span class="string">&quot;zs&quot;</span>).password(<span class="string">&quot;&#123;noop&#125;123&quot;</span>).roles(<span class="string">&quot;admin&quot;</span>).build());</span><br><span class="line">        users.createUser(User.withUsername(<span class="string">&quot;ls&quot;</span>).password(<span class="string">&quot;&#123;noop&#125;123&quot;</span>).roles(<span class="string">&quot;user&quot;</span>).build());</span><br><span class="line">        <span class="keyword">return</span> users;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>目前的案例还比较简单，因此暂时先不给密码进行加密，所以返回 <code>NoOpPasswordEncoder</code>, 就是在密码前面加<code>&#123;noop&#125;</code> 即可。</p>
+<h5 id="2-3-自定义登录页面"><a href="#2-3-自定义登录页面" class="headerlink" title="2.3 自定义登录页面"></a>2.3 自定义登录页面</h5><p><code>resources/static/login.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/doLogin&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;登录&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是, 启动服务后, security 会拦截静态页面, 会自动进入它的默认login , 因此需要设置放行静态资源 , SecurityConfig 添加如下配置 :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    WebSecurityCustomizer <span class="title function_">webSecurityCustomizer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">WebSecurityCustomizer</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">customize</span><span class="params">(WebSecurity web)</span> &#123;</span><br><span class="line">                web.ignoring().antMatchers(<span class="string">&quot;/login.html&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p> Spring Security 不需要自己写登录接口的 , 官方提供了登录逻辑接口, 只需要配置一下就行。</p>
+<p> Spring Security 的底层实际上就是一堆过滤器，  通过提供一个 <code>SecurityFilterChain Bean</code> 来配置过滤器链，SecurityFilterChain 是一个接口，这个接口只有一个实现类 DefaultSecurityFilterChain，构建 <code>DefaultSecurityFilterChain</code> 的第一个参数是拦截规则，也就是哪些路径需要拦截，第二个参数则是过滤器链，这里我给了一个空集合，也就是我们的 Spring Security 会拦截下所有的请求 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   *登录流程:</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   *   1，当一个请求到达Spring Security 过滤器链的时候，有一个过滤器叫做 SecurityContextPersistenceFilter。</span></span><br><span class="line"><span class="comment">       2，当用户登录成功的时候，会将当前用户登录的信息存入到 SecurityContextHolder 中,SecurityContextHolder底层是一个ThreadLocal，当前用户信息被存入到TheadLocal中。</span></span><br><span class="line"><span class="comment">       3，在登录请求返回数据的时候，会经过SecurityContextPersistenceFilter过德器，在该过滤器中，会拿出来SecurityContextHolder中的用户信息，然后将之存入到HttpSession中，同时清除掉 SecurityContextHolder中的用户信息。</span></span><br><span class="line"><span class="comment">       4，接下来，当用户访问/hello 的时候，一样也会经过 SecurityContextPersistenceFilter，在该过端器中，会从HttpSession中读取出来当前用户数据，并存入到SecurityContextHolder中，在接下来的各种认证和权限的判断中，都会从SecurityContextHolder中获取。</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Bean</span></span><br><span class="line">   SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">       http.authorizeRequests()</span><br><span class="line">       <span class="comment">// 所有用户都能访问/doLogin，这种放行，/doLogin 请求会经过Spring Security过滤器链，但是这些过滤器不会拦截这个请求。与放行静态资源有区别</span></span><br><span class="line">               <span class="comment">// permitAll 表示登录相关的页面/接口不要被拦截。</span></span><br><span class="line">               .antMatchers(<span class="string">&quot;/doLogin&quot;</span>).permitAll()</span><br><span class="line">               <span class="comment">// 所有的请求都要认证之后才能访问</span></span><br><span class="line">               .anyRequest().authenticated()</span><br><span class="line">           	<span class="comment">// and 方法表示结束当前标签，上下文回到HttpSecurity，开启新一轮的配置。</span></span><br><span class="line">               .and()</span><br><span class="line">           	<span class="comment">// formLogin 对应了 &lt;formlogin&gt; 。</span></span><br><span class="line">               .formLogin()</span><br><span class="line">               .loginPage(<span class="string">&quot;/login.html&quot;</span>)</span><br><span class="line">               <span class="comment">// 指定登录接口的地址</span></span><br><span class="line">               .loginProcessingUrl(<span class="string">&quot;/doLogin&quot;</span>)</span><br><span class="line">               <span class="comment">// 配置密码参数的 key , 默认就是 username</span></span><br><span class="line">               .usernameParameter(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">               <span class="comment">// 配置密码参数的 key , 默认就是 password</span></span><br><span class="line">               .passwordParameter(<span class="string">&quot;password&quot;</span>)</span><br><span class="line">           	<span class="comment">// 登录成功后跳转页面</span></span><br><span class="line">               .defaultSuccessUrl(<span class="string">&quot;/hello&quot;</span>)</span><br><span class="line">               .and()</span><br><span class="line">               <span class="comment">// 关掉 crsf 攻击防御</span></span><br><span class="line">               .csrf().disable();</span><br><span class="line">       <span class="keyword">return</span> http.build();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>获取当前登录的用户信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">        <span class="comment">// 获取当前登录的用户信息</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">spring_security_context</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;SPRING_SECURITY_CONTEXT&quot;</span>);</span><br><span class="line">        <span class="type">SecurityContext</span> <span class="variable">springSecurityContext</span> <span class="operator">=</span> (SecurityContext) spring_security_context;</span><br><span class="line">        <span class="type">Authentication</span> <span class="variable">authentication</span> <span class="operator">=</span> (Authentication) springSecurityContext.getAuthentication();</span><br><span class="line">        System.out.println(authentication);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方式二</span></span><br><span class="line">        <span class="type">Authentication</span> <span class="variable">authentication1</span> <span class="operator">=</span> SecurityContextHolder.getContext().getAuthentication();</span><br><span class="line">        System.out.println(authentication1);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-4-自定义登录返回数据"><a href="#2-4-自定义登录返回数据" class="headerlink" title="2.4 自定义登录返回数据"></a>2.4 自定义登录返回数据</h5><p>登录成功和失败返回 json 数据</p>
+<p>在前后端分离这样的开发架构下，前后端的交互都是通过 JSON 来进行，无论登录成功还是失败，都不会有什么服务端跳转或者客户端跳转之类。 </p>
+<p>登录成功了，服务端就返回一段登录成功的提示 JSON 给前端，前端收到之后，该跳转该展示，由前端自己决定，就和后端没有关系了。 </p>
+<p>登录失败了，服务端就返回一段登录失败的提示 JSON 给前端，前端收到之后，该跳转该展示，由前端自己决定，也和后端没有关系了。 </p>
+<h6 id="2-4-1-登录成功"><a href="#2-4-1-登录成功" class="headerlink" title="2.4.1 登录成功"></a>2.4.1 登录成功</h6><p>之前配置登录成功的处理是通过如下两个方法来配置的： </p>
+<ul>
+<li><p>defaultSuccessUrl </p>
+</li>
+<li><p>successForwardUrl </p>
+</li>
+</ul>
+<p>这两个都是配置跳转地址的，适用于前后端不分的开发。除了这两个方法之外，还有一个必杀技，那就 是 <code>successHandler</code>。 </p>
+<p><code>successHandler</code> 的功能十分强大，甚至已经囊括了 defaultSuccessUrl 和 successForwardUrl 的功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 登录成功后跳转页面</span></span><br><span class="line"><span class="comment">//.defaultSuccessUrl(&quot;/hello&quot;)</span></span><br><span class="line">.successHandler(</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* request :当前请求对象</span></span><br><span class="line"><span class="comment">* response : 当前响应的对象</span></span><br><span class="line"><span class="comment">* authentication :当前登录成功的用户信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">    (request, response, authentication) -&gt; &#123;</span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;status&quot;</span>,<span class="string">&quot;200&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;登录成功&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;data&quot;</span>,authentication.getPrincipal());</span><br><span class="line">    response.setContentType(<span class="string">&quot;application/json;charset=utf-8&quot;</span>);</span><br><span class="line">    response.getWriter().write(<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>().writeValueAsString(map));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>successHandler 方法的参数是一个 <code>AuthenticationSuccessHandler</code> 对象，这个对象中我们要实现的方法是 <code>onAuthenticationSuccess</code>。</p>
+<h6 id="2-4-2-登录失败"><a href="#2-4-2-登录失败" class="headerlink" title="2.4.2 登录失败"></a>2.4.2 登录失败</h6><p>登录失败也有一个类似的回调</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.failureHandler(</span><br><span class="line">    <span class="comment">// exception : 表示失败的异常</span></span><br><span class="line">    (request, response, exception) -&gt; &#123;</span><br><span class="line">    Map&lt;String,Object&gt; map = (Map) <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;status&quot;</span>,<span class="string">&quot;500&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> BadCredentialsException) &#123;</span><br><span class="line">    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;用户名或者密码写错,登录失败&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> UsernameNotFoundException)&#123;</span><br><span class="line">    <span class="comment">//出于安全考虑，Spring Security 内部将UsernameNotFoundException隐藏起来了，转而抛出了BadcredentialsException</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> AccountExpiredException)&#123;</span><br><span class="line">    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;账户过期,登录失败&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> CredentialsContainer)&#123;</span><br><span class="line">    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;密码过期,登录失败&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> DisabledException)&#123;</span><br><span class="line">    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;账户被禁用,登录失败&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> LockedException)&#123;</span><br><span class="line">    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;账户被锁定,登录失败&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    response.setContentType(<span class="string">&quot;application/json;charset=utf-8&quot;</span>);</span><br><span class="line">    response.getWriter().write(<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>().writeValueAsString(map));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>失败的回调也是三个参数，第三个是一个 Exception，对于登录失败，会有不同的 原因，<code>Exception</code> 中则保存了登录失败的原因，我们可以将之通过 JSON 返回到前端。 </p>
+<h6 id="2-4-3-未认证处理方案"><a href="#2-4-3-未认证处理方案" class="headerlink" title="2.4.3 未认证处理方案"></a>2.4.3 未认证处理方案</h6><p>如果用户没有登录就访问一个需要认证后才能访问的页面，这个时候，不应该让用户重定向到登录页面，而是给用户一个尚未登录的提示，前端收到提示之后，再自行决定页面跳转。 </p>
+<p>要解决这个问题，就涉及到 Spring Security 中的一个接口 <code>AuthenticationEntryPoint</code> ，该接口有一个实现类： <code>LoginUrlAuthenticationEntryPoint</code> ，该类中有一个方法 <code>commence</code> ，源码如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Performs the redirect (or forward) to the login form URL.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commence</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span><br><span class="line"><span class="params">			AuthenticationException authException)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">this</span>.useForward) &#123;</span><br><span class="line">			<span class="comment">// redirect to login page. Use https if forceHttps true</span></span><br><span class="line">			<span class="type">String</span> <span class="variable">redirectUrl</span> <span class="operator">=</span> buildRedirectUrlToLoginPage(request, response, authException);</span><br><span class="line">			<span class="built_in">this</span>.redirectStrategy.sendRedirect(request, response, redirectUrl);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">String</span> <span class="variable">redirectUrl</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">this</span>.forceHttps &amp;&amp; <span class="string">&quot;http&quot;</span>.equals(request.getScheme())) &#123;</span><br><span class="line">			<span class="comment">// First redirect the current request to HTTPS. When that request is received,</span></span><br><span class="line">			<span class="comment">// the forward to the login page will be used.</span></span><br><span class="line">			redirectUrl = buildHttpsRedirectUrlForRequest(request);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (redirectUrl != <span class="literal">null</span>) &#123;</span><br><span class="line">			<span class="built_in">this</span>.redirectStrategy.sendRedirect(request, response, redirectUrl);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">String</span> <span class="variable">loginForm</span> <span class="operator">=</span> determineUrlToUseForThisRequest(request, response, authException);</span><br><span class="line">		logger.debug(LogMessage.format(<span class="string">&quot;Server side forward to: %s&quot;</span>, loginForm));</span><br><span class="line">		<span class="type">RequestDispatcher</span> <span class="variable">dispatcher</span> <span class="operator">=</span> request.getRequestDispatcher(loginForm);</span><br><span class="line">		dispatcher.forward(request, response);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法是用来决定到底是要重定向还是要 forward，通过 Debug 追踪，我们发现默认情况下 useForward 的值为 false，所以请求走进了重定向。 </p>
+<p>解决问题直接重写这个方法，在方法中返回 JSON 即可，不再做重定向操作，具体配置如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.csrf().disable()</span><br><span class="line">                .exceptionHandling().authenticationEntryPoint((AuthenticationEntryPoint)</span><br><span class="line">                    <span class="comment">// 如果用户没有登录，就去访问需要登陆后才能访问的接口，那么就会触发该方法</span></span><br><span class="line">                (request, response, authException) -&gt; &#123;</span><br><span class="line">                    Map&lt;String, Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">                    map.put(<span class="string">&quot;status&quot;</span>,<span class="string">&quot;200&quot;</span>);</span><br><span class="line">                    map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;尚未登录,请先登录&quot;</span>);</span><br><span class="line">                    response.setContentType(<span class="string">&quot;application/json;charset=utf-8&quot;</span>);</span><br><span class="line">                    response.getWriter().write(<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>().writeValueAsString(map));</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在 Spring Security 的配置中加上自定义的 <code>AuthenticationEntryPoint</code> 处理方法，该方法中直接返回相应的 JSON 提示即可。这样，如果用户再去直接访问一个需要认证之后才可以访问的请求，就不会发生重定向操作了，服务端会直接给浏览器一个 JSON 提示，浏览器收到 JSON 之后，该干嘛干嘛。 </p>
+<h6 id="2-4-4-测试"><a href="#2-4-4-测试" class="headerlink" title="2.4.4 测试"></a>2.4.4 测试</h6><p>通过Postman 来测试上面的接口返回的数据</p>
+<table>
+<thead>
+<tr>
+<th align="center">登录成功</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105112743249.png" alt="image-20230105112743249" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td align="center"><strong>登录失败</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105112843916.png" alt="image-20230105112843916" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td align="center"><strong>未认证登录访问</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105112930913.png" alt="image-20230105112930913" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h5 id="2-5-数据库中读取用户信息"><a href="#2-5-数据库中读取用户信息" class="headerlink" title="2.5 数据库中读取用户信息"></a>2.5 数据库中读取用户信息</h5><h6 id="2-5-1-数据库表设计"><a href="#2-5-1-数据库表设计" class="headerlink" title="2.5.1 数据库表设计"></a>2.5.1 数据库表设计</h6><table>
+<thead>
+<tr>
+<th align="center">数据库表设计</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105115646321.png" alt="image-20230105115646321" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h6 id="2-5-2-创建工程"><a href="#2-5-2-创建工程" class="headerlink" title="2.5.2 创建工程"></a>2.5.2 创建工程</h6><blockquote>
+<p>创建新的 SpringBoot 工程 , 添加 MyBatis , MySQL , SpringSecurity 的依赖 , 目前使用的SpringBoot 的版本是 2.7.7 </p>
+</blockquote>
+<ol>
+<li><p>model -&gt; 实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">implements</span> <span class="title class_">UserDetails</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String nickname;</span><br><span class="line">    <span class="keyword">private</span> Boolean enabled;</span><br><span class="line">    <span class="keyword">private</span> Integer role;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回用户的角色 / 权限</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 账户是否没有过期</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isAccountNonExpired</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 账户是否没有被锁定</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isAccountNonLocked</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 账户是否没有过期</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isCredentialsNonExpired</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 账户是否可用</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEnabled</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> enabled;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>mapper -&gt; UserMapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line">    <span class="meta">@Select(&quot;select * from user where username = #&#123;username&#125;;&quot;)</span></span><br><span class="line">    User <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>service -&gt; UserService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">userService</span> <span class="keyword">implements</span> <span class="title class_">UserDetailsService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserMapper userMapper;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据用户名查询用户对象</span></span><br><span class="line"><span class="comment">     * 当用户登录的时候 , 会自动调用到这个方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> username 用户登录时输入的用户名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> UsernameNotFoundException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> UserDetails <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span>userMapper.loadUserByUsername(username);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 说明用户名不存在，这个异常最终会被隐藏起来，转而抛出 BadCredentialsException</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UsernameNotFoundException</span>(<span class="string">&quot;用户不存在&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>controller -&gt; HelloController</p>
+<p>简单写一个登录后访问接口 , 这些都是<code>key -value</code> 形式</p>
+</li>
+</ol>
+<h5 id="2-6-自定义登录接口"><a href="#2-6-自定义登录接口" class="headerlink" title="2.6 自定义登录接口"></a>2.6 自定义登录接口</h5><p>自定义登录接口 , JSON 格式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginController</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     AuthenticationManager 就是 Spring Security 中的认证器，这是一个接口，这个接口只有一个实现类， provideManager。用户登录时候具体的校验工作，就是由它来完成的。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    AuthenticationManager authenticationManager;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不使用 Spring Security 自带的登录接口, 而是使用自己写的登录接口</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String,Object&gt; <span class="title function_">login</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">// 构建登录令牌</span></span><br><span class="line">        <span class="type">UsernamePasswordAuthenticationToken</span> <span class="variable">token</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(user.getUsername(), user.getPassword());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 这一步就是去执行登录 , 类似于 shiro 中的 subject.login 方法</span></span><br><span class="line">            authenticationManager.authenticate(token);</span><br><span class="line">            <span class="comment">// 将当前登录成功的用户信息存入到 SecurityContextHolder 中</span></span><br><span class="line">            SecurityContextHolder.getContext().setAuthentication(<span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(token.getPrincipal(),<span class="literal">null</span>,token.getAuthorities()));</span><br><span class="line">            map.put(<span class="string">&quot;status&quot;</span>,<span class="string">&quot;200&quot;</span>);</span><br><span class="line">            map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;登录成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (AuthenticationException exception) &#123;</span><br><span class="line">            <span class="comment">// 登录失败</span></span><br><span class="line">            map.put(<span class="string">&quot;status&quot;</span>,<span class="string">&quot;500&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> BadCredentialsException) &#123;</span><br><span class="line">                map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;用户名或者密码写错,登录失败&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> UsernameNotFoundException)&#123;</span><br><span class="line"></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> AccountExpiredException)&#123;</span><br><span class="line">                map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;账户过期,登录失败&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> CredentialsContainer)&#123;</span><br><span class="line">                map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;密码过期,登录失败&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> DisabledException)&#123;</span><br><span class="line">                map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;账户被禁用,登录失败&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (exception <span class="keyword">instanceof</span> LockedException)&#123;</span><br><span class="line">                map.put(<span class="string">&quot;message&quot;</span>,<span class="string">&quot;账户被锁定,登录失败&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>config -&gt; SecurityConfig</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> AuthenticationManager <span class="title function_">authenticationManager</span><span class="params">(</span></span><br><span class="line"><span class="params">            AuthenticationConfiguration authConfig)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> authConfig.getAuthenticationManager();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .antMatchers(<span class="string">&quot;/login&quot;</span>).permitAll()</span><br><span class="line">                .anyRequest().authenticated()</span><br><span class="line">                .and()</span><br><span class="line">                .csrf().disable();</span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">测试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105144708247.png" alt="image-20230105144708247" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h5 id="2-7-密码加密"><a href="#2-7-密码加密" class="headerlink" title="2.7 密码加密"></a>2.7 密码加密</h5><h6 id="2-7-1-介绍"><a href="#2-7-1-介绍" class="headerlink" title="2.7.1 介绍"></a>2.7.1 介绍</h6><p>在 Spring Security 中，跟密码加密/校验相关的事情，都是由 <code>PasswordEncoder</code> 来主导的，PasswordEncoder 拥有众多的实现类 :</p>
+<table>
+<thead>
+<tr>
+<th align="center">PasswordEncoder 及 它的实现类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105145512838.png" alt="image-20230105145512838" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<p>这些实现类，有的已经过期了，有的用处不大。对于我们而言，最常用的莫过于 <code>BCryptPasswordEncoder</code>。 </p>
+<p>PasswordEncoder 本身是一个接口，里边只有三个方法： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">PasswordEncoder</span> &#123;</span><br><span class="line">    String <span class="title function_">encode</span><span class="params">(CharSequence rawPassword)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">matches</span><span class="params">(CharSequence rawPassword, String encodedPassword)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> <span class="type">boolean</span> <span class="title function_">upgradeEncoding</span><span class="params">(String encodedPassword)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>encode 方法用来对密码进行加密。 </p>
+</li>
+<li><p>matches 方法用来对密码进行比对。 </p>
+</li>
+<li><p>upgradeEncoding 表示是否需要对密码进行再次加密以使得密码更加安全，默认为 false。 </p>
+</li>
+</ul>
+<p>PasswordEncoder 的实现类，则具体实现了这些方法。</p>
+<h6 id="2-7-2-PasswordEncoder-的作用"><a href="#2-7-2-PasswordEncoder-的作用" class="headerlink" title="2.7.2 PasswordEncoder 的作用"></a>2.7.2 PasswordEncoder 的作用</h6><p>通常情况下都是在 SecurityConfig 中配置一个 PasswordEncoder 的实例，类似下面这样： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">PasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>剩下的事情，都是由系统调用的。</p>
+<h6 id="2-7-3-BCryptPasswordEncoder"><a href="#2-7-3-BCryptPasswordEncoder" class="headerlink" title="2.7.3 BCryptPasswordEncoder"></a>2.7.3 BCryptPasswordEncoder</h6><p>BCryptPasswordEncoder 是 PasswordEncoder 的子类, 这个密码加密类自带盐 , 不需要自己加盐了 , 而且它还可以根据电脑的性能动态的调整运算密码校验时间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">BCryptPasswordEncoder</span> <span class="variable">encoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            System.out.println(encoder.encode(<span class="string">&quot;123&quot;</span>));</span><br><span class="line">            <span class="comment">// 生成的密码都是不一样的</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>把生成好的密码加密文随便复制一个替换数据库的密码明文。</p>
+<p>接着在 config -&gt; SecurityConfig 配置密码加解密器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册密码加密</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> BCryptPasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">测试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105152022131.png" alt="image-20230105152022131" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h6 id="2-7-4-DelegatingPasswordEncoder"><a href="#2-7-4-DelegatingPasswordEncoder" class="headerlink" title="2.7.4 DelegatingPasswordEncoder"></a>2.7.4 DelegatingPasswordEncoder</h6><p>如果没有手动配置密码加解密工具，那么默认的 <code>PasswordEncoder</code>实际上就 <code>DelegatingPasswordEncoder</code>。<br><code>DelegatingPasswordEncoder</code>代理了所有的密码加密器，它会根据密码的字符串格式，而选择一个合适的加密工具。</p>
+<table>
+<thead>
+<tr>
+<th align="center">PasswordEncoderFactories 源码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230105153335817.png" alt="image-20230105153335817" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<p>先注释掉配置的加密密码工具 , 在数据库存入加密前缀的密码</p>
+<table>
+<thead>
+<tr>
+<th><img src="/2023/01/12/SpringSecurity/image-20230105153622450.png" alt="image-20230105153622450" style="zoom:200%;"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230105153826513.png" alt="image-20230105153826513" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td>admin 和 zs 用户都可以登录成功</td>
+</tr>
+</tbody></table>
+<h6 id="2-7-5-密码升级"><a href="#2-7-5-密码升级" class="headerlink" title="2.7.5 密码升级"></a>2.7.5 密码升级</h6><p>在 Service 层多一个密码接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">userService</span> <span class="keyword">implements</span> <span class="title class_">UserDetailsService</span>, UserDetailsPasswordService &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当用户登录的时候，会去自动检查用户当前的密码加密方案是不是bcrypt，如果不是，则会自动进行密码的升级，那么此时就会触发该方法。</span></span><br><span class="line"><span class="comment">     * 在这个方法中，更新用户密码即可</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user 当前用户对象</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> newPassword 重新处理后的密码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> UserDetails <span class="title function_">updatePassword</span><span class="params">(UserDetails user, String newPassword)</span> &#123;</span><br><span class="line">       <span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> userMapper.updatePasswordByUsername(newPassword,user.getUsername());</span><br><span class="line">       <span class="keyword">if</span> (i == <span class="number">1</span>)&#123;</span><br><span class="line">           <span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> (User) user;</span><br><span class="line">           user1.setPassword(newPassword);</span><br><span class="line">           <span class="keyword">return</span> user1;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>mapper -&gt; UserMapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line">    <span class="meta">@Select(&quot;select * from user where username = #&#123;username&#125;;&quot;)</span></span><br><span class="line">    User <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update(&quot;update user set password = #&#123;password&#125; where username=#&#123;username&#125;;&quot;)</span></span><br><span class="line">    Integer <span class="title function_">updatePasswordByUsername</span><span class="params">(<span class="meta">@Param(&quot;password&quot;)</span> String newPassword, <span class="meta">@Param(&quot;username&quot;)</span> String username)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在数据库中的 zs 用户的密码方案是 {noop}的 , 当其登录之后触发密码升级 , 就会对其密码升级成 bcrypt 。</p>
+<table>
+<thead>
+<tr>
+<th><img src="/2023/01/12/SpringSecurity/image-20230105155711396.png" alt="image-20230105155711396" style="zoom:200%;"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230105155730212.png" alt="image-20230105155730212" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230105155745313.png" alt="image-20230105155745313" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<p>代理的密码加密器是可以解决带前缀的密码 , 下面密码解析器只能解析不带前缀的密码。</p>
+<p>在 配置类进行配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">   <span class="keyword">public</span> PasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="type">String</span> <span class="variable">encodingId</span> <span class="operator">=</span> <span class="string">&quot;bcrypt&quot;</span>;</span><br><span class="line">       Map&lt;String, PasswordEncoder&gt; encoders = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">       <span class="comment">// 密码加密强度 , 默认是 10 , 取值是 4 到 31之间</span></span><br><span class="line">       encoders.put(encodingId, <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>(<span class="number">11</span>));</span><br><span class="line">       encoders.put(<span class="string">&quot;ldap&quot;</span>, <span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.crypto.password.LdapShaPasswordEncoder());</span><br><span class="line">       encoders.put(<span class="string">&quot;MD4&quot;</span>, <span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.crypto.password.Md4PasswordEncoder());</span><br><span class="line">       encoders.put(<span class="string">&quot;MD5&quot;</span>, <span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.crypto.password.MessageDigestPasswordEncoder(<span class="string">&quot;MD5&quot;</span>));</span><br><span class="line">       encoders.put(<span class="string">&quot;noop&quot;</span>, org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance());</span><br><span class="line">       encoders.put(<span class="string">&quot;pbkdf2&quot;</span>, <span class="keyword">new</span> <span class="title class_">Pbkdf2PasswordEncoder</span>());</span><br><span class="line">       encoders.put(<span class="string">&quot;scrypt&quot;</span>, <span class="keyword">new</span> <span class="title class_">SCryptPasswordEncoder</span>());</span><br><span class="line">       encoders.put(<span class="string">&quot;SHA-1&quot;</span>, <span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.crypto.password.MessageDigestPasswordEncoder(<span class="string">&quot;SHA-1&quot;</span>));</span><br><span class="line">       encoders.put(<span class="string">&quot;SHA-256&quot;</span>,</span><br><span class="line">               <span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.crypto.password.MessageDigestPasswordEncoder(<span class="string">&quot;SHA-256&quot;</span>));</span><br><span class="line">       encoders.put(<span class="string">&quot;sha256&quot;</span>, <span class="keyword">new</span> <span class="title class_">org</span>.springframework.security.crypto.password.StandardPasswordEncoder());</span><br><span class="line">       encoders.put(<span class="string">&quot;argon2&quot;</span>, <span class="keyword">new</span> <span class="title class_">Argon2PasswordEncoder</span>());</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">DelegatingPasswordEncoder</span>(encodingId, encoders);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>BCryptPasswordEncoder 的密码强度默认是 10 , 就是不赋值的情况 , 取值范围是 4 - 31之间 , 数值越高 , 运算时间越长  , 也就是登录时间慢 , 有利于防止别人恶意攻击网站。前面都是没有赋值的 BCrypt 加密密码 , 现在对其进行升级。</p>
+<table>
+<thead>
+<tr>
+<th><img src="/2023/01/12/SpringSecurity/image-20230105161551771.png" alt="image-20230105161551771" style="zoom:200%;"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230105161723609.png" alt="image-20230105161723609" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h5 id="2-8-权限控制"><a href="#2-8-权限控制" class="headerlink" title="2.8 权限控制"></a>2.8 权限控制</h5><h6 id="2-8-1-准备测试接口"><a href="#2-8-1-准备测试接口" class="headerlink" title="2.8.1 准备测试接口"></a>2.8.1 准备测试接口</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">user</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;user World&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/admin/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">admin</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;admin World&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这三个测试接口，我们的规划是这样的： </p>
+<ol>
+<li><p>/hello 是任何人都可以访问的接口 </p>
+</li>
+<li><p>/admin/hello 是具有 admin 身份的人才能访问的接口 </p>
+</li>
+<li><p>/user/hello 是具有 user 身份的人才能访问的接口 </p>
+</li>
+<li><p>所有 user 能够访问的资源，admin 都能够访问 </p>
+</li>
+</ol>
+<h6 id="2-8-2-数据库表"><a href="#2-8-2-数据库表" class="headerlink" title="2.8.2 数据库表"></a>2.8.2 数据库表</h6><p>添加两张数据库</p>
+<table>
+<thead>
+<tr>
+<th><img src="/2023/01/12/SpringSecurity/image-20230105163950372.png" alt="image-20230105163950372" style="zoom:200%;"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230105164005950.png" alt="image-20230105164005950" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h6 id="2-8-3-权限配置"><a href="#2-8-3-权限配置" class="headerlink" title="2.8.3 权限配置"></a>2.8.3 权限配置</h6><p>config -&gt; SecurityConfig</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .antMatchers(<span class="string">&quot;/login&quot;</span>).permitAll()</span><br><span class="line">                .antMatchers(<span class="string">&quot;/admin/**&quot;</span>).hasRole(<span class="string">&quot;admin&quot;</span>)</span><br><span class="line">                .antMatchers(<span class="string">&quot;/user/**&quot;</span>).hasAnyRole(<span class="string">&quot;admin&quot;</span>,<span class="string">&quot;user&quot;</span>)</span><br><span class="line">                .anyRequest().authenticated()</span><br><span class="line">                .and()</span><br><span class="line">                .csrf().disable();</span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="2-8-4-实体类"><a href="#2-8-4-实体类" class="headerlink" title="2.8.4 实体类"></a>2.8.4 实体类</h6><p>添加 Role 实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Role</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>User 类添加 Role 属性 及返回角色信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">implements</span> <span class="title class_">UserDetails</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">private</span> String nickname;</span><br><span class="line">    <span class="keyword">private</span> Boolean enabled;</span><br><span class="line">    <span class="keyword">private</span> Integer role;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Role&gt; roles;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回用户的角色 / 权限</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; getAuthorities() &#123;</span><br><span class="line"><span class="comment">//        List&lt;SimpleGrantedAuthority&gt; list = new ArrayList&lt;&gt;();</span></span><br><span class="line"><span class="comment">//        return list;</span></span><br><span class="line">        <span class="keyword">return</span> roles.stream().map(r-&gt;<span class="keyword">new</span> <span class="title class_">SimpleGrantedAuthority</span>(r.getName())).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="2-8-5-业务配置"><a href="#2-8-5-业务配置" class="headerlink" title="2.8.5 业务配置"></a>2.8.5 业务配置</h6><p>UserMapper 返回角色信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line">    <span class="meta">@Select(&quot;select * from user where username = #&#123;username&#125;;&quot;)</span></span><br><span class="line">    User <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Update(&quot;update user set password = #&#123;password&#125; where username=#&#123;username&#125;;&quot;)</span></span><br><span class="line">    Integer <span class="title function_">updatePasswordByUsername</span><span class="params">(<span class="meta">@Param(&quot;password&quot;)</span> String newPassword, <span class="meta">@Param(&quot;username&quot;)</span> String username)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;SELECT r.* FROM role r LEFT JOIN user_role ur ON r.`id` = ur.`rid`WHERE ur.`uid` = #&#123;uid&#125;&quot;)</span></span><br><span class="line">    List&lt;Role&gt; <span class="title function_">getUserRolesByUid</span><span class="params">(Integer uid)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>UserService 根据用户查询角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> UserDetails <span class="title function_">loadUserByUsername</span><span class="params">(String username)</span> <span class="keyword">throws</span> UsernameNotFoundException &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span>userMapper.loadUserByUsername(username);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 说明用户名不存在，这个异常最终会被隐藏起来，转而抛出 BadCredentialsException</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UsernameNotFoundException</span>(<span class="string">&quot;用户不存在&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果查询到了用户,接下来就去查询用户的角色</span></span><br><span class="line">        user.setRoles(userMapper.getUserRolesByUid(user.getId()));</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="2-8-6-controller-登录"><a href="#2-8-6-controller-登录" class="headerlink" title="2.8.6 controller 登录"></a>2.8.6 controller 登录</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回的 authentication 对象中 , 不仅有用户名, 还有用户角色等信息</span></span><br><span class="line">            <span class="type">Authentication</span> <span class="variable">authentication</span> <span class="operator">=</span> authenticationManager.authenticate(token);</span><br><span class="line">            <span class="comment">// 将当前登录成功的用户信息存入到 SecurityContextHolder 中</span></span><br><span class="line">            SecurityContextHolder.getContext().setAuthentication(<span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(authentication.getPrincipal(),<span class="literal">null</span>,authentication.getAuthorities()));</span><br></pre></td></tr></table></figure>
+
+<p>之前的token 只存了用户名和密码 , 没有存入角色 </p>
+<p>现在启动服务器 ,测试。完美 ok</p>
+<h6 id="2-8-7-角色继承"><a href="#2-8-7-角色继承" class="headerlink" title="2.8.7 角色继承"></a>2.8.7 角色继承</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    http.authorizeRequests()</span><br><span class="line">            .antMatchers(<span class="string">&quot;/login&quot;</span>).permitAll()</span><br><span class="line">            .antMatchers(<span class="string">&quot;/admin/**&quot;</span>).hasRole(<span class="string">&quot;admin&quot;</span>)</span><br><span class="line">            .antMatchers(<span class="string">&quot;/user/**&quot;</span>).hasRole(<span class="string">&quot;user&quot;</span>)</span><br><span class="line">            .anyRequest().authenticated()</span><br><span class="line">            .and()</span><br><span class="line">            .csrf().disable();</span><br><span class="line">    <span class="keyword">return</span> http.build();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配色角色的继承关系</span></span><br><span class="line"><span class="comment"> * ROLE_admin 继承自 ROLE_user , 因此前者具备后者的所有权限</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line">RoleHierarchy <span class="title function_">roleHierarchy</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">RoleHierarchyImpl</span> <span class="variable">roleHierarchy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RoleHierarchyImpl</span>();</span><br><span class="line">    <span class="comment">// 多个继承</span></span><br><span class="line">    <span class="comment">// roleHierarchy.setHierarchy(&quot;ROLE_admin &gt; ROLE_user \n aa &gt; bb \n cc &gt; dd&quot;);</span></span><br><span class="line">    roleHierarchy.setHierarchy(<span class="string">&quot;ROLE_admin &gt; ROLE_user&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> roleHierarchy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="2-8-8-注解权限控制"><a href="#2-8-8-注解权限控制" class="headerlink" title="2.8.8 注解权限控制"></a>2.8.8 注解权限控制</h6><ol>
+<li><p>在 SecurityConfig 配置类上加上这个注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableGlobalMethodSecurity(prePostEnabled = true)</span></span><br></pre></td></tr></table></figure>
+
+<p>prePostEnabled = true表示开启如下两个注解的使用:</p>
+<ol>
+<li>@PreAuthorize，这个相当于前置通知</li>
+<li>@PostAuthorize，这个相当于后置通知</li>
+</ol>
+</li>
+<li><p>注释掉之前的角色配置代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 	.antMatchers(&quot;/admin/**&quot;).hasRole(&quot;admin&quot;)</span></span><br><span class="line"><span class="comment">//  .antMatchers(&quot;/user/**&quot;).hasRole(&quot;user&quot;)</span></span><br></pre></td></tr></table></figure></li>
+<li><p>接口加上前置通知 , 表示拦截接口访问角色权限</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/user/hello&quot;)</span></span><br><span class="line">  <span class="meta">@PreAuthorize(&quot;hasRole(&#x27;ROLE_user&#x27;)&quot;)</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">user</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;user World&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@GetMapping(&quot;/admin/hello&quot;)</span></span><br><span class="line">  <span class="meta">@PreAuthorize(&quot;hasRole(&#x27;ROLE_admin&#x27;)&quot;)</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">admin</span><span class="params">(HttpSession session)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;admin World&quot;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="2-9-记住我登录"><a href="#2-9-记住我登录" class="headerlink" title="2.9 记住我登录"></a>2.9 记住我登录</h5><p>重新创建SpringBoot 工程 , 添加Security , MyBatis , MySQL 的依赖 , 写好实体类, DaoMapper 及 业务登录后, 接着写两个接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/rm&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">rememberMe</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello RM&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SecurityConfig -&gt; RemeberMe 配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                <span class="comment">// 如果访问路径是 /rm , 只能通过 RemeberMe 的形式访问</span></span><br><span class="line">                .antMatchers(<span class="string">&quot;/rm&quot;</span>).rememberMe()</span><br><span class="line">            <span class="comment">// 剩下的路径，只要登录就能访问，这个登录不管是rememberwe 登录，还是用户名密码登录，都是可以的</span></span><br><span class="line">             <span class="comment">//   .anyRequest().authenticated()</span></span><br><span class="line">            <span class="comment">// 这个是剩下的路径 , 必须通过用户名密码登录才能访问</span></span><br><span class="line">                .anyRequest().fullyAuthenticated()</span><br><span class="line">                .and()</span><br><span class="line">                .formLogin()</span><br><span class="line">                .and()</span><br><span class="line">                .rememberMe().key(<span class="string">&quot;AbcdEfghIjklmNopQrsTuvXyz_0123456789&quot;</span>)</span><br><span class="line">        		.and()</span><br><span class="line">            	.csrf().disable()</span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动服务 , 在登录页面多了一个记住我登录的选项 , 勾选之后 , 再登录 ,关闭游览器 , 重新访问<code>/hello</code> 页面就不需要再登录 , 反之没有选上rememberMe , 关闭游览器再访问 <code>/hello</code> 就要先登录。</p>
+<table>
+<thead>
+<tr>
+<th><img src="/2023/01/12/SpringSecurity/image-20230106045434553.png" alt="image-20230106045434553" style="zoom:200%;"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230106045706555.png" alt="image-20230106045706555" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230106050216421.png" alt="image-20230106050216421"></td>
+</tr>
+</tbody></table>
+<p>rememberMe cooked 有效时间是 14 天</p>
+<h4 id="三-会话管理"><a href="#三-会话管理" class="headerlink" title="三 会话管理"></a>三 会话管理</h4><h5 id="3-1-Session-管理"><a href="#3-1-Session-管理" class="headerlink" title="3.1 Session 管理"></a>3.1 Session 管理</h5><p>SecurityConfig 添加配置信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.and()</span><br><span class="line">                .rememberMe().key(<span class="string">&quot;AbcdEfghIjklmNopQrsTuvXyz_0123456789&quot;</span>)</span><br><span class="line">                .and()</span><br><span class="line">                .sessionManagement()</span><br><span class="line">                <span class="comment">// 设置每一个账号最多只能有一个会话</span></span><br><span class="line">                .maximumSessions(<span class="number">1</span>)</span><br><span class="line">    			<span class="comment">// 当达到最大会话数的时候 , 禁止后来的用户登录</span></span><br><span class="line">                .maxSessionsPreventsLogin(<span class="literal">true</span>)</span><br><span class="line">                .and().and()</span><br><span class="line">                .csrf().disable();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>会话管理测试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230106053027570.png" alt="image-20230106053027570" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h5 id="3-2-HttpSession-销毁事件"><a href="#3-2-HttpSession-销毁事件" class="headerlink" title="3.2 HttpSession 销毁事件"></a>3.2 HttpSession 销毁事件</h5><p>发布HttpSession销毁的事件 ,   因为当用户注销的时候，httpsession 会被销毁，但是默认情况下，spring security框架并不知道 httpsession被销毁了。</p>
+<p>手动添加 销毁时间，就是监听 httpsession 的销毁事件，如果 httpsession销毁，就通知 Spring Security 将用户会话表中 session移除。</p>
+<p>在 SecurityConfig 添加一个Bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    HttpSessionEventPublisher <span class="title function_">httpSessionEventPublisher</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">HttpSessionEventPublisher</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动服务 , 打开两个游览器 , 一个游览器登录成功, 另一个游览器也登录这个用户, 发现登录不进去 , 前者注销登录 , 后者再次登录 就可以登录 , 就是因为前者注销登录销毁了 session 。</p>
+<p>**注意 : **实体类一定要重写 equals 方法 , 因为当前项目是用了 Lombok 插件 , 实体类加了<code>@Data</code> 注解 , 所以它会自动重写 <code>equals</code> 方法, cookie 会根据hashCode 来鉴别是否同一个对象。</p>
+<h5 id="3-3-防御会话攻击"><a href="#3-3-防御会话攻击" class="headerlink" title="3.3 防御会话攻击"></a>3.3 防御会话攻击</h5><p>什么是会话固定攻击？英文叫做 session fifixation attack。 </p>
+<p>正常来说，只要你不关闭浏览器，并且服务端的 HttpSession 也没有过期，那么维系服务端和浏览器的 sessionid 是不会发生变化的，而会话固定攻击，则是利用这一机制，借助受害者用相同的会话 ID 获取 <strong>认证</strong>和<strong>授权</strong>，然后利用该会话 ID 劫持受害者的会话以成功冒充受害者，造成会话固定攻击。 </p>
+<p>如何防御 ?</p>
+<table>
+<thead>
+<tr>
+<th align="center">具体配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230106060117046.png" alt="image-20230106060117046" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<ol>
+<li><p>migrateSession 表示在登录成功之后，创建一个新的会话，然后讲旧的 session 中的信息复制到新的 session 中，<strong>默认即此</strong>。 </p>
+</li>
+<li><p>none 表示不做任何事情，继续使用旧的 session。 </p>
+</li>
+<li><p>changeSessionId 表示 session 不变，但是会修改 sessionid，这实际上用到了 Servlet 容器提供的防御会话固定攻击。 </p>
+</li>
+<li><p>newSession 表示登录后创建一个新的 session。 </p>
+</li>
+</ol>
+<p>默认的 migrateSession ，在用户匿名访问的时候是一个 sessionid，当用户成功登录之后，又是另外一个 sessionid，这样就可以有效避免会话固定攻击。</p>
+</blockquote>
+<h5 id="3-4-CSRF-攻击与防御"><a href="#3-4-CSRF-攻击与防御" class="headerlink" title="3.4 CSRF 攻击与防御"></a>3.4 CSRF 攻击与防御</h5><p>CSRF 就是跨域请求伪造，英文全称是 Cross Site Request Forgery。 </p>
+<p>这是一种非常常见的 Web 攻击方式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">CSRF 原理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/2023/01/12/SpringSecurity/image-20230106062907005.png" alt="image-20230106062907005" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h6 id="3-4-1-默认解决方案"><a href="#3-4-1-默认解决方案" class="headerlink" title="3.4.1 默认解决方案"></a>3.4.1 默认解决方案</h6><ol>
+<li><p>首先在SecurityConfig类 取消关闭 crsf</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .csrf().disable()</span></span><br></pre></td></tr></table></figure></li>
+<li><p>前端提交页面加上隐藏属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">form action=&quot;/hello&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;_csrf.token&#125;&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">th:name</span>=<span class="string">&quot;$&#123;_csrf.parameterName&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hello&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，这个测试接口是一个 POST 请求，因为默认情况下，GET、HEAD、TRACE 以及 OPTIONS 是不需要验证 CSRF 攻击的。</p>
+<p>在发送 POST 请求的时候，还额外携带了一个隐藏域，隐藏域的 key 是 </p>
+<p><code>$&#123;_csrf.parameterName&#125;</code> ，value 则是 <code>$&#123;_csrf.token&#125; </code>。 </p>
+<p>这两个值服务端会自动带过来，只需要在前端渲染出来即可。 </p>
+</li>
+<li><img src="/2023/01/12/SpringSecurity/image-20230106064505343.png" alt="image-20230106064505343" style="zoom:200%;"></li>
+</ol>
+<h6 id="3-4-2-前后端分离方案"><a href="#3-4-2-前后端分离方案" class="headerlink" title="3.4.2 前后端分离方案"></a>3.4.2 前后端分离方案</h6><p>这次不是将 _csrf 放在 Model 中返回前端了，而是放在 Cookie 中返回前端，配置方式如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将 csrf 令牌存入 Cookie 中</span></span><br><span class="line">                .csrf().csrfTokenRepository(<span class="keyword">new</span> <span class="title class_">CookieCsrfTokenRepository</span>());</span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>测试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230106064927211.png" alt="image-20230106064927211" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<h4 id="四-JWT-登录"><a href="#四-JWT-登录" class="headerlink" title="四 JWT 登录"></a>四 JWT 登录</h4><h5 id="4-1-简介"><a href="#4-1-简介" class="headerlink" title="4.1 简介"></a>4.1 简介</h5><p>前面的登录都是有状态的登录方式 , 有状态服务，即服务端需要记录每次会话的客户端信息，从而识别客户端身份，根据用户身份进行请求的处理，典型的设计如 Tomcat 中的 Session。例如登录：用户登录后，我们把用户的信息保存在服务端 session 中，并且给用户一个 cookie 值，记录对应的 session，然后下次请求，用户携带 cookie 值 来（这一步有浏览器自动完成），我们就能识别到对应 session，从而找到用户的信息。这种方式目前 来看最方便，但是也有一些缺陷，如下： </p>
+<ul>
+<li><p>服务端保存大量数据，增加服务端压力 </p>
+</li>
+<li><p>服务端保存用户状态，不支持集群化部署</p>
+</li>
+</ul>
+<p>那么无状态性有哪些好处呢？ </p>
+<ul>
+<li><p>客户端请求不依赖服务端的信息，多次请求不需要必须访问到同一台服务器 </p>
+</li>
+<li><p>服务端的集群和状态对客户端透明 </p>
+</li>
+<li><p>服务端可以任意的迁移和伸缩（可以方便的进行集群化部署） </p>
+</li>
+<li><p>减小服务端存储压力</p>
+</li>
+</ul>
+<p>无状态登录的流程： </p>
+<ul>
+<li><p>首先客户端发送账户名/密码到服务端进行认证 </p>
+</li>
+<li><p>认证通过后，服务端将用户信息加密并且编码成一个 token，返回给客户端 </p>
+</li>
+<li><p>以后客户端每次发送请求，都需要携带认证的 token </p>
+</li>
+<li><p>服务端对客户端发送来的 token 进行解密，判断是否有效，并且获取用户登录信息 </p>
+</li>
+</ul>
+<p>JWT，全称是 Json Web Token， 是一种 JSON 风格的轻量级的授权和身份认证规范，可实现无状态、 分布式的 Web 应用授权</p>
+<h5 id="4-2-JWT-数据格式"><a href="#4-2-JWT-数据格式" class="headerlink" title="4.2 JWT 数据格式"></a>4.2 JWT 数据格式</h5><p>JWT 包含三部分数据：</p>
+<ul>
+<li><p>Header：头部，通常头部有两部分信息： </p>
+<ul>
+<li><p>声明类型，这里是JWT </p>
+</li>
+<li><p>加密算法，自定义</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>头部进行 <code>Base64Url</code> 编码（可解码），得到第一部分数据。 </p>
+<ul>
+<li><p>Payload：载荷，就是有效数据，在官方文档中(RFC7519)，这里给了7个示例信息： </p>
+<ul>
+<li><p>iss (issuer)：表示签发人 </p>
+</li>
+<li><p>exp (expiration time)：表示token过期时间 </p>
+</li>
+<li><p>sub (subject)：主题 </p>
+</li>
+<li><p>aud (audience)：受众 </p>
+</li>
+<li><p>nbf (Not Before)：生效时间 </p>
+</li>
+<li><p>iat (Issued At)：签发时间 </p>
+</li>
+<li><p>jti (JWT ID)：编号 </p>
+</li>
+</ul>
+<p>这部分也会采用 Base64Url 编码，得到第二部分数据。 </p>
+</li>
+<li><p>Signature：签名，是整个数据的认证信息。一般根据前两步的数据，再加上服务的的密钥 </p>
+<ul>
+<li>secret（密钥保存在服务端，不能泄露给客户端），通过 Header 中配置的加密算法生成。用于验证整个数据完整和可靠性。 </li>
+</ul>
+</li>
+</ul>
+<h5 id="4-3-添加依赖"><a href="#4-3-添加依赖" class="headerlink" title="4.3 添加依赖"></a>4.3 添加依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.11.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.11.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.jsonwebtoken<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jjwt-jackson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.11.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 如果使用 JDK10 或者以下的 JDK , 需要加上下面的依赖</span></span><br><span class="line"><span class="comment">        &lt;dependency&gt;</span></span><br><span class="line"><span class="comment">            &lt;groupId&gt;org.bouncycastle&lt;/groupId&gt;</span></span><br><span class="line"><span class="comment">            &lt;artifactId&gt;bcprov-jdk15on&lt;/artifactId&gt;</span></span><br><span class="line"><span class="comment">            &lt;version&gt;1.70&lt;/version&gt;</span></span><br><span class="line"><span class="comment">            &lt;scope&gt;runtime&lt;/scope&gt;</span></span><br><span class="line"><span class="comment">        &lt;/dependency&gt;</span></span><br><span class="line"><span class="comment">        --&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-4-准备工作"><a href="#4-4-准备工作" class="headerlink" title="4.4 准备工作"></a>4.4 准备工作</h5><ol>
+<li><p>User 实体类 继承 UserDetails 接口</p>
+</li>
+<li><p>Role 实体类</p>
+</li>
+<li><p>UserMapper 接口</p>
+</li>
+<li><p>UserService 业务</p>
+</li>
+<li><p>controller , 简单写一个访问接口</p>
+</li>
+<li><p>做好上面的登录, 启动服务测试看看是否有问题</p>
+</li>
+<li><p>接下来 JWT 相关的过滤器配置 , <code>filter -&gt; JwtFilter</code>, </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 以后所有的请求都要经过这个过滤器，然后我们就在这个过滤器中去校验 JWT字符串是否合法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtFilter</span> <span class="keyword">extends</span> <span class="title class_">GenericFilterBean</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">        <span class="type">HttpServletRequest</span> <span class="variable">req</span> <span class="operator">=</span> (HttpServletRequest) servletRequest;</span><br><span class="line"><span class="comment">//        先去请求头中获取令牌</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">authorization</span> <span class="operator">=</span> req.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (authorization == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(authorization))&#123;</span><br><span class="line"><span class="comment">//            如果请求头中没有令牌 ,则去请求参数获取令牌</span></span><br><span class="line">            authorization = req.getParameter(<span class="string">&quot;token&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (authorization != <span class="literal">null</span> &amp;&amp; !<span class="string">&quot;&quot;</span>.equals(authorization))&#123;</span><br><span class="line">            authorization = authorization.replace(<span class="string">&quot;Bearer&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="comment">//            开始解析 JWT 字符串</span></span><br><span class="line">            <span class="type">Claims</span> <span class="variable">claims</span> <span class="operator">=</span> Jwts.parserBuilder()</span><br><span class="line"><span class="comment">//                    设置解析的 KEY</span></span><br><span class="line">                    .setSigningKey(SecurityConfig.KEY).build()</span><br><span class="line"><span class="comment">//                    开始解析</span></span><br><span class="line">                    .parseClaimsJws(authorization).getBody();</span><br><span class="line"><span class="comment">//            获取 jwt中的用户名</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> claims.getSubject();</span><br><span class="line"><span class="comment">//            获取角色字符串</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">authorities</span> <span class="operator">=</span> claims.get(<span class="string">&quot;authorities&quot;</span>, String.class);</span><br><span class="line"><span class="comment">//            将角色字符串转为角色对象</span></span><br><span class="line">            List&lt;SimpleGrantedAuthority&gt; authorityList = Arrays.stream(authorities.split(<span class="string">&quot;,&quot;</span>)).map(s -&gt; <span class="keyword">new</span> <span class="title class_">SimpleGrantedAuthority</span>(s)).collect(Collectors.toList());</span><br><span class="line"><span class="comment">//            将当前用户信息存起来</span></span><br><span class="line">            SecurityContextHolder.getContext().setAuthentication(<span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(username,<span class="literal">null</span>,authorityList));</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        无论 jwt 校验是否成功 , 请求都继续往后走</span></span><br><span class="line">        filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>首先从请求头中提取出 authorization 字段，这个字段对应的 value 就是用户的 token。 </p>
+</li>
+<li><p>将提取出来的 token 字符串转换为一个 Claims 对象，再从 Claims 对象中提取出当前用户名和用户角色，创建一个<code>UsernamePasswordAuthenticationToken</code> 放到当前的 Context 中，然后执行 过滤链使请求继续执行下去。</p>
+</li>
+</ol>
+</li>
+<li><p>Spring Security 配置 , config -&gt;SecurityConfig</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfig</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Key</span> <span class="variable">KEY</span> <span class="operator">=</span> Keys.secretKeyFor(SignatureAlgorithm.HS256);</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    JwtFilter jwtFilter;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    SecurityFilterChain <span class="title function_">securityFilterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 将 JwtFilter 添加到 UsernamePasswordAuthenticationFilter 的前面</span></span><br><span class="line">        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);</span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .anyRequest().authenticated()</span><br><span class="line">                .and()</span><br><span class="line">                .formLogin()</span><br><span class="line">                .successHandler((req, resp, auth) -&gt; &#123;</span><br><span class="line"><span class="comment">//                    当前登录成功的用户名</span></span><br><span class="line">                    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> auth.getName();</span><br><span class="line">                    <span class="comment">// 当前用户角色字符串</span></span><br><span class="line">                    Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; authorities = auth.getAuthorities();</span><br><span class="line">                    <span class="type">String</span> <span class="variable">authStr</span> <span class="operator">=</span> authorities.stream().map(g -&gt; g.getAuthority() + <span class="string">&quot;,&quot;</span>).collect(Collectors.joining());</span><br><span class="line">                    Map&lt;String,Object&gt; claims = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">                    claims.put(<span class="string">&quot;authorities&quot;</span>,authStr);</span><br><span class="line">                    <span class="type">String</span> <span class="variable">jws</span> <span class="operator">=</span></span><br><span class="line">                            <span class="comment">// 开始构建 JWT 字符串</span></span><br><span class="line">                            Jwts.builder()</span><br><span class="line">                            <span class="comment">// 设置用户名</span></span><br><span class="line">                    .setSubject(name)</span><br><span class="line">                            <span class="comment">// 各种额外属性 , 都可以存到这个里边来</span></span><br><span class="line">                    .addClaims(claims)</span><br><span class="line">                                    <span class="comment">// 设置密钥</span></span><br><span class="line">                            .signWith(KEY)</span><br><span class="line"><span class="comment">//                                    设置过期时间 , 设置七天后过期</span></span><br><span class="line">                                    .setExpiration(<span class="keyword">new</span> <span class="title class_">Date</span>(System.currentTimeMillis()+<span class="number">7</span>*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>))</span><br><span class="line">                            .compact();</span><br><span class="line">                    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">                    map.put(<span class="string">&quot;status&quot;</span>,<span class="number">200</span>);</span><br><span class="line">                    map.put(<span class="string">&quot;token&quot;</span>,jws);</span><br><span class="line">                    resp.setContentType(<span class="string">&quot;application/json;charset=utf-8&quot;</span>);</span><br><span class="line">                    resp.getWriter().write(<span class="keyword">new</span> <span class="title class_">ObjectMapper</span>().writeValueAsString(map));</span><br><span class="line">                &#125;)</span><br><span class="line">                .failureHandler((req, resp, exception) -&gt; &#123;</span><br><span class="line"></span><br><span class="line">                &#125;)</span><br><span class="line">                .and()</span><br><span class="line">                .csrf().disable()</span><br><span class="line">                .sessionManagement()</span><br><span class="line">                <span class="comment">// Spring Security 不去创建 session</span></span><br><span class="line">                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span><br><span class="line">        <span class="keyword">return</span> http.build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="4-5-测试"><a href="#4-5-测试" class="headerlink" title="4.5 测试"></a>4.5 测试</h5><p>启动服务 , 通过 Postman 测试</p>
+<table>
+<thead>
+<tr>
+<th><img src="/2023/01/12/SpringSecurity/image-20230106131452495.png" alt="image-20230106131452495" style="zoom:200%;"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230106131637662.png" alt="image-20230106131637662" style="zoom:200%;"></td>
+</tr>
+<tr>
+<td><img src="/2023/01/12/SpringSecurity/image-20230106131808204.png" alt="image-20230106131808204" style="zoom:200%;"></td>
+</tr>
+</tbody></table>
+<p>**Author : ** 猫尛妖</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Spring/" rel="tag"># Spring</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/01/10/Java-IO%E6%B5%81/" rel="prev" title="Java IO流">
+                  <i class="fa fa-chevron-left"></i> Java IO流
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 - <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">猫尛妖</span>
+</div>
+  <div class="powered-by">
+   本站已安全运行:
+	<span id="momk"></span>
+	<script language=javascript>
+	function show_date_time(){
+		window.setTimeout("show_date_time()", 1000);
+		BirthDay=new Date("12-07-2022 10:48:24");//建站日期
+		today=new Date();
+		timeold=(today.getTime()-BirthDay.getTime());
+		sectimeold=timeold/1000
+		secondsold=Math.floor(sectimeold);
+		msPerDay=24*60*60*1000
+		e_daysold=timeold/msPerDay
+		daysold=Math.floor(e_daysold);
+		e_hrsold=(daysold-e_daysold)*-24;
+		hrsold=Math.floor(e_hrsold);
+		e_minsold=(hrsold-e_hrsold)*-60;
+		minsold=Math.floor((hrsold-e_hrsold)*-60);
+		seconds=Math.floor((minsold-e_minsold)*-60);
+		momk.innerHTML=daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒" ;
+	}
+show_date_time();
+</script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.8" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.1/dist/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+
+</body>
+</html>
